@@ -1,0 +1,14 @@
+server:
+  servlet:
+    context-path: /student-management
+
+spring:
+  profiles:
+    active: home
+
+  jpa:
+    show-sql: true
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
