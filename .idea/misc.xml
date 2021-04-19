@@ -26,6 +26,8 @@
         <option value="$PROJECT_DIR$/crud/data-jpa/pom.xml" />
         <option value="$PROJECT_DIR$/crud/jdbc-api/pom.xml" />
         <option value="$PROJECT_DIR$/jdbc/data-jpa/pom.xml" />
+        <option value="$PROJECT_DIR$/webmvc/jsp/pom.xml" />
+        <option value="$PROJECT_DIR$/webmvc/thymeleaf/pom.xml" />
       </list>
     </option>
   </component>

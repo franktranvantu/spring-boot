@@ -9,9 +9,11 @@
         <outputRelativeToContentRoot value="true" />
         <module name="purchaseOrder-service" />
         <module name="department-service" />
+        <module name="jsp" />
         <module name="data-jpa" />
         <module name="spring-boot-kafka" />
         <module name="user-service" />
+        <module name="thymeleaf" />
         <module name="cloud-gateway" />
         <module name="spring-boot-data-jdbc" />
         <module name="inventory-service" />
@@ -39,6 +41,7 @@
       <module name="hystrix-dashboard" target="1.8" />
       <module name="inventory-service" target="1.8" />
       <module name="jdbc-api" target="1.8" />
+      <module name="jsp" target="1.8" />
       <module name="payment-service" target="1.8" />
       <module name="producer" target="1.8" />
       <module name="purchaseOrder-service" target="1.8" />
@@ -51,6 +54,7 @@
       <module name="spring-boot-oauth-facebook" target="1.8" />
       <module name="spring-boot-security" target="1.8" />
       <module name="spring-boot-security-jpa" target="1.8" />
+      <module name="thymeleaf" target="1.8" />
       <module name="user-service" target="1.8" />
     </bytecodeTargetLevel>
   </component>
@@ -64,6 +68,7 @@
       <module name="hystrix-dashboard" options="-parameters" />
       <module name="inventory-service" options="-parameters" />
       <module name="jdbc-api" options="-parameters" />
+      <module name="jsp" options="-parameters" />
       <module name="payment-service" options="-parameters" />
       <module name="producer" options="-parameters" />
       <module name="service-registry" options="-parameters" />
@@ -75,6 +80,7 @@
       <module name="spring-boot-oauth-facebook" options="-parameters" />
       <module name="spring-boot-security" options="-parameters" />
       <module name="spring-boot-security-jpa" options="-parameters" />
+      <module name="thymeleaf" options="-parameters" />
       <module name="user-service" options="-parameters" />
     </option>
   </component>
