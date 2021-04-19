@@ -5,6 +5,8 @@
       <module fileurl="file://$PROJECT_DIR$/spring-boot-microservices/cloud-gateway/cloud-gateway.iml" filepath="$PROJECT_DIR$/spring-boot-microservices/cloud-gateway/cloud-gateway.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring-boot-microservices-saga-choreography/common-dto/common-dto.iml" filepath="$PROJECT_DIR$/spring-boot-microservices-saga-choreography/common-dto/common-dto.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring-boot-rabbitmq/consumer/consumer.iml" filepath="$PROJECT_DIR$/spring-boot-rabbitmq/consumer/consumer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jdbc/data-jdbc/data-jdbc.iml" filepath="$PROJECT_DIR$/jdbc/data-jdbc/data-jdbc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jdbc/data-jpa/data-jpa.iml" filepath="$PROJECT_DIR$/jdbc/data-jpa/data-jpa.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring-boot-microservices/department-service/department-service.iml" filepath="$PROJECT_DIR$/spring-boot-microservices/department-service/department-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring-boot-microservices/hystrix-dashboard/hystrix-dashboard.iml" filepath="$PROJECT_DIR$/spring-boot-microservices/hystrix-dashboard/hystrix-dashboard.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring-boot-microservices-saga-choreography/inventory-service/inventory-service.iml" filepath="$PROJECT_DIR$/spring-boot-microservices-saga-choreography/inventory-service/inventory-service.iml" />

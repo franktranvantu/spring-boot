@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="purchaseOrder-service" />
         <module name="department-service" />
+        <module name="data-jpa" />
         <module name="spring-boot-kafka" />
         <module name="user-service" />
         <module name="cloud-gateway" />
@@ -33,9 +34,11 @@
       <module name="common-dto" target="1.8" />
       <module name="configuration-properties" target="1.8" />
       <module name="consumer" target="1.8" />
+      <module name="data-jpa" target="1.8" />
       <module name="department-service" target="1.8" />
       <module name="hystrix-dashboard" target="1.8" />
       <module name="inventory-service" target="1.8" />
+      <module name="jdbc-api" target="1.8" />
       <module name="payment-service" target="1.8" />
       <module name="producer" target="1.8" />
       <module name="purchaseOrder-service" target="1.8" />
@@ -56,9 +59,11 @@
       <module name="common-dto" options="-parameters" />
       <module name="configuration-properties" options="-parameters" />
       <module name="consumer" options="-parameters" />
+      <module name="data-jpa" options="-parameters" />
       <module name="department-service" options="-parameters" />
       <module name="hystrix-dashboard" options="-parameters" />
       <module name="inventory-service" options="-parameters" />
+      <module name="jdbc-api" options="-parameters" />
       <module name="payment-service" options="-parameters" />
       <module name="producer" options="-parameters" />
       <module name="service-registry" options="-parameters" />

@@ -1,0 +1,10 @@
+server:
+  servlet:
+    context-path: /api/v1
+
+spring:
+  profiles:
+    active: home
+
+  jpa:
+    show-sql: true
