@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/spring-boot-crud/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-boot-jdbc/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-boot-kafka/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-boot-rabbitmq/consumer/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-boot-rabbitmq/producer/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-boot-security/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-boot-data-jdbc/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-boot-security-jpa/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-boot-microservices/user-service/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-boot-microservices/cloud-gateway/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-boot-microservices/service-registry/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-boot-microservices/hystrix-dashboard/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-boot-microservices/department-service/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-boot-crud-in-memory/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-boot-oauth-facebook/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-boot-microservices-saga-choreography/common-dto/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-boot-microservices-saga-choreography/payment-service/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-boot-microservices-saga-choreography/inventory-service/pom.xml" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-boot-configuration-properties/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_15" project-jdk-name="15" project-jdk-type="JavaSDK" />
+</project>

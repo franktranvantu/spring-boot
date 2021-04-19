@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="$PROJECT_DIR$/spring-boot-crud" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/spring-boot-crud-in-memory" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/spring-boot-data-jdbc" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/spring-boot-jdbc" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/spring-boot-kafka" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/spring-boot-microservices" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/spring-boot-microservices-saga-choreography" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/spring-boot-oauth-facebook" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/spring-boot-rabbitmq" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/spring-boot-security" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/spring-boot-security-jpa" vcs="Git" />
+  </component>
+</project>
