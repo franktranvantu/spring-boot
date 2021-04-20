@@ -34,7 +34,7 @@
         <form action="${contextPath}/student/create-student">
             <div class="form-group row">
                 <div class="col-sm-12 text-center">
-                    <button class="btn btn-primary">Create Student</button>
+                    <button class="btn btn-dark">Create Student</button>
                 </div>
             </div>
         </form>
@@ -78,7 +78,7 @@
                         Are you sure you want to delete student permanently?
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
                         <button type="button" class="btn btn-danger" id="delete-student-btn">Delete</button>
                     </div>
                 </div>

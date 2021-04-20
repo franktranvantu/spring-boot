@@ -34,7 +34,7 @@
             <div class="form-group row">
                 <div class="col-sm-12 text-right">
                     <button type="button" class="btn btn-secondary" id="back">Back</button>
-                    <button type="submit" class="btn btn-primary">${action}</button>
+                    <button type="submit" class="btn btn-dark">${action}</button>
                 </div>
             </div>
         </form:form>
