@@ -1,0 +1,15 @@
+h1, form {
+    text-align: center;
+}
+
+table {
+    margin: auto;
+}
+
+table thead {
+    text-align: center;
+}
+
+table, td {
+    border: 1px solid;
+}
