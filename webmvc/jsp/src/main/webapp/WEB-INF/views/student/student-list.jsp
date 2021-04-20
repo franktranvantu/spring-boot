@@ -8,13 +8,9 @@
     <link rel="stylesheet" href="${contextPath}/student/student.css">
 </head>
 <body>
-    <!-- Alert -->
-    <div class="alert alert-success position-absolute" role="alert">
-        The student has been deleted!
-    </div>
     <div class="container">
         <h1 class="text-center display-1">Student Management</h1>
-        <form action="create-student">
+        <form action="${contextPath}/student/create-student">
             <div class="form-group row">
                 <div class="col-sm-12 text-center">
                     <button class="btn btn-primary">Create Student</button>
@@ -38,7 +34,7 @@
                         <td>${student.name}</td>
                         <td>${student.email}</td>
                         <td class="text-center">${student.dob}</td>
-                        <td class="text-center"><a href="update-student/${student.id}">Update</a></td>
+                        <td class="text-center"><a href="${contextPath}/student/update-student/${student.id}">Update</a></td>
                         <td class="text-center"><a href="#" class="delete-student-link" data-id="${student.id}">Delete</a></td>
                     </tr>
                 </c:forEach>
