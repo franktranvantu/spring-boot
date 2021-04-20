@@ -1,0 +1,9 @@
+.save-student, .save-course {
+    max-width: 600px;
+}
+
+.alert {
+    display: none;
+    max-width: 20%;
+    right: 0;
+}

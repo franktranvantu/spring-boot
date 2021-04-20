@@ -5,11 +5,12 @@
 <head>
     <title>Student Management</title>
     <link rel="stylesheet" href="${contextPath}/webjars/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${contextPath}/index.css">
     <link rel="stylesheet" href="${contextPath}/student/student.css">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Student Management</a>
+        <a class="navbar-brand" href="${contextPath}">Student Management</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>

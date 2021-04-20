@@ -1,5 +1,7 @@
 package com.franktran.jsp.student;
 
+import com.franktran.jsp.course.Course;
+import com.franktran.jsp.course.CourseService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,9 +18,11 @@ import java.util.Objects;
 public class StudentController {
 
   private final StudentService studentService;
+  private final CourseService courseService;
 
-  public StudentController(StudentService studentService) {
+  public StudentController(StudentService studentService, CourseService courseService) {
     this.studentService = studentService;
+    this.courseService = courseService;
   }
 
   @GetMapping
@@ -30,7 +34,9 @@ public class StudentController {
 
   @GetMapping("/create-student")
   public String showCreateStudent(@ModelAttribute("student") Student student, Model model) {
+    List<Course> courses = courseService.getAllCourses();
     model.addAttribute("action", "Create");
+    model.addAttribute("courses", courses);
     return "student/save-student";
   }
 
