@@ -1,15 +1,9 @@
-h1, form {
-    text-align: center;
+.save-student {
+    max-width: 600px;
 }
 
-table {
-    margin: auto;
-}
-
-table thead {
-    text-align: center;
-}
-
-table, td {
-    border: 1px solid;
+.alert {
+    display: none;
+    max-width: 20%;
+    right: 0;
 }
