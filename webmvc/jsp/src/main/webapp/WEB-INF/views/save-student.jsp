@@ -6,6 +6,7 @@
 <html>
 <head>
     <title>${action} Student</title>
+    <link rel="stylesheet" href="${contextPath}/webjars/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="${contextPath}/student/student.css">
 </head>
 <body>
@@ -31,6 +32,8 @@
         </p>
     </form:form>
 
+    <script src="${contextPath}/webjars/jquery/jquery.min.js"></script>
+    <script src="${contextPath}/webjars/bootstrap/js/bootstrap.min.js"></script>
     <script src="${contextPath}/student/student.js"></script>
 </body>
 </html>

@@ -15,4 +15,4 @@ spring:
 
   web:
     resources:
-      static-locations: classpath:/static
+      static-locations: /WEB-INF/static
