@@ -5,6 +5,7 @@
 <head>
   <title>Student Management</title>
   <link rel="stylesheet" href="${contextPath}/webjars/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="${contextPath}/webjars/bootstrap/css/bootstrap.min.css">
 </head>
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -16,10 +17,10 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="#">Courses <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="${contextPath}/course">Courses <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Students</a>
+          <a class="nav-link" href="${contextPath}/student">Students</a>
         </li>
       </ul>
       <form class="form-inline my-2 my-lg-0">
@@ -31,5 +32,6 @@
 
   <script src="${contextPath}/webjars/jquery/jquery.min.js"></script>
   <script src="${contextPath}/webjars/bootstrap/js/bootstrap.min.js"></script>
+  <script src="${contextPath}/index.js"></script>
 </body>
 </html>
