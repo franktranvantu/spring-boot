@@ -22,7 +22,7 @@ public class StudentController {
   }
 
   @GetMapping
-  public String getStudents(Model model) {
+  public String index(Model model) {
     List<Student> students = studentService.getStudents();
     model.addAttribute("students", students);
     return "student/student-list";
