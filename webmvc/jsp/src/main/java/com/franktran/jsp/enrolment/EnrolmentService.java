@@ -24,20 +24,44 @@ public class EnrolmentService {
   }
 
   public Enrolment createEnrolment(Enrolment enrolment) {
+    Optional<Enrolment> enrolmentByCourseIdAndStudentIdAndSemester = enrolmentRepository
+        .findEnrolmentByCourseIdAndStudentIdAndSemester(enrolment.getCourse().getId(), enrolment.getStudent().getId(), enrolment.getSemester());
+    if (enrolmentByCourseIdAndStudentIdAndSemester.isPresent()) {
+      throw new IllegalArgumentException(String.format("Student %s taken course %s for semester %s",
+          enrolment.getCourse().getName(), enrolment.getStudent().getName(), enrolment.getSemester()));
+    }
     return enrolmentRepository.save(enrolment);
   }
 
   public Enrolment updateEnrolment(long id, Enrolment enrolment) {
     Enrolment existEnrolment = enrolmentRepository.findById(id).orElseThrow(() -> new IllegalArgumentException(String.format("Enrolment with id %s does not exist", id)));
+    Optional<Enrolment> enrolmentByCourseIdAndStudentIdAndSemester = enrolmentRepository
+        .findEnrolmentByCourseIdAndStudentIdAndSemester(enrolment.getCourse().getId(), enrolment.getStudent().getId(), enrolment.getSemester());
+    // Update course
     if (Objects.nonNull(enrolment.getCourse().getId())
-        && !Objects.equals(existEnrolment.getCourse().getId(), enrolment.getCourse().getId())
-        && Objects.nonNull(enrolment.getSemester())
-        && !Objects.equals(existEnrolment.getSemester(), enrolment.getSemester())) {
-      Optional<Enrolment> enrolmentByStudentId = enrolmentRepository.findEnrolmentByCourseIdAndSemester(enrolment.getStudent().getId(), enrolment.getSemester());
-      if (enrolmentByStudentId.isPresent()) {
-        throw new IllegalArgumentException("Course with semester taken");
+        && !Objects.equals(existEnrolment.getCourse().getId(), enrolment.getCourse().getId())) {
+      if (enrolmentByCourseIdAndStudentIdAndSemester.isPresent()) {
+        throw new IllegalArgumentException(String.format("Student %s taken course %s for semester %s",
+            enrolment.getCourse().getName(), enrolment.getStudent().getName(), enrolment.getSemester()));
       }
       existEnrolment.getCourse().setId(enrolment.getCourse().getId());
+    }
+    // Update student
+    if (Objects.nonNull(enrolment.getStudent().getId())
+        && !Objects.equals(existEnrolment.getStudent().getId(), enrolment.getStudent().getId())) {
+      if (enrolmentByCourseIdAndStudentIdAndSemester.isPresent()) {
+        throw new IllegalArgumentException(String.format("Student %s taken course %s for semester %s",
+            enrolment.getCourse().getName(), enrolment.getStudent().getName(), enrolment.getSemester()));
+      }
+      existEnrolment.getStudent().setId(enrolment.getStudent().getId());
+    }
+    // Update semester
+    if (Objects.nonNull(enrolment.getSemester())
+        && !Objects.equals(existEnrolment.getSemester(), enrolment.getSemester())) {
+      if (enrolmentByCourseIdAndStudentIdAndSemester.isPresent()) {
+        throw new IllegalArgumentException(String.format("Student %s taken course %s for semester %s",
+            enrolment.getCourse().getName(), enrolment.getStudent().getName(), enrolment.getSemester()));
+      }
       existEnrolment.setSemester(enrolment.getSemester());
     }
     return enrolmentRepository.save(existEnrolment);

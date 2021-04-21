@@ -55,7 +55,7 @@ public class EnrolmentController {
             return "redirect:/";
         } catch (Exception e) {
             model.addAttribute("error", e.getMessage());
-            return "/save-enrolment";
+            return "enrolment/save-enrolment";
         }
     }
 
@@ -64,7 +64,9 @@ public class EnrolmentController {
         Enrolment enrolment = enrolmentService.getEnrolmentById(id);
         model.addAttribute("action", "Update");
         model.addAttribute("enrolment", enrolment);
-        return "save-enrolment";
+        model.addAttribute("courses", courseService.getAllCourses());
+        model.addAttribute("students", studentService.getAllStudents());
+        return "enrolment/save-enrolment";
     }
 
     @GetMapping("/delete-enrolment/{id}")

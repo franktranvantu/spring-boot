@@ -40,7 +40,7 @@
                 <div class="col-sm-10">
                     <form:select path="course" class="form-control" id="course">
                         <c:forEach var="course" items="${courses}">
-                            <option value="${course.id}" selected="${enrolment.course.id == course.id ? 'selected' : ''}">${course.name}</option>
+                            <option value="${course.id}" ${enrolment.course.id == course.id ? 'selected' : ''}>${course.name}</option>
                         </c:forEach>
                     </form:select>
                 </div>
@@ -50,7 +50,7 @@
                 <div class="col-sm-10">
                     <form:select path="student" class="form-control" id="student">
                         <c:forEach var="student" items="${students}">
-                            <option value="${student.id}">${student.name}</option>
+                            <option value="${student.id}" ${enrolment.student.id == student.id ? 'selected' : ''}>${student.name}</option>
                         </c:forEach>
                     </form:select>
                 </div>
