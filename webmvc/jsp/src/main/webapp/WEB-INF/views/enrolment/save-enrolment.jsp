@@ -4,10 +4,10 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <html>
 <head>
-    <title>${action} Student</title>
+    <title>${action} Enrolment</title>
     <link rel="stylesheet" href="${contextPath}/webjars/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="${contextPath}/index.css">
-    <link rel="stylesheet" href="${contextPath}/student/student.css">
+    <link rel="stylesheet" href="${contextPath}/enrolment/enrolment.css">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -31,9 +31,9 @@
             </form>
         </div>
     </nav>
-    <div class="container save-student">
-        <h1 class="text-center mb-4">${action} Student</h1>
-        <form:form action="${contextPath}/student/save-student" method="post" modelAttribute="student">
+    <div class="container save-enrolment">
+        <h1 class="text-center mb-4">${action} Enrolment</h1>
+        <form:form action="${contextPath}/enrolment/save-enrolment" method="post" modelAttribute="enrolment">
             <form:hidden path="id" />
             <div class="form-group row">
                 <label for="name" class="col-sm-2 col-form-label">Name</label>
@@ -75,6 +75,6 @@
     <script src="${contextPath}/webjars/jquery/jquery.min.js"></script>
     <script src="${contextPath}/webjars/bootstrap/js/bootstrap.min.js"></script>
     <script src="${contextPath}/index.js"></script>
-    <script src="${contextPath}/student/student.js"></script>
+    <script src="${contextPath}/enrolment/enrolment.js"></script>
 </body>
 </html>

@@ -1,6 +1,6 @@
 server:
   servlet:
-    context-path: /student-management
+    context-path: /enrolment-management
 
 spring:
   profiles:

@@ -1,14 +1,14 @@
 package com.franktran.jsp.student;
 
+import com.franktran.jsp.course.Course;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
@@ -17,16 +17,18 @@ import java.time.LocalDate;
 public class Student {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
   private String name;
   private String email;
   private LocalDate dob;
-  private Long courseId;
+  @ManyToMany
+  private List<Course> courses;
 
-  public Student(String name, String email, LocalDate dob) {
+  public Student(String name, String email, LocalDate dob, List<Course> courses) {
     this.name = name;
     this.email = email;
     this.dob = dob;
+    this.courses = courses;
   }
 }
