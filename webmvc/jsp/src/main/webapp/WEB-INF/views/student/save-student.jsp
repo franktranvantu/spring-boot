@@ -6,7 +6,7 @@
 <head>
     <title>${action} Student</title>
     <link rel="stylesheet" href="${contextPath}/webjars/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="${contextPath}/index.css">
+    <link rel="stylesheet" href="${contextPath}/common.css">
     <link rel="stylesheet" href="${contextPath}/student/student.css">
 </head>
 <body>
@@ -54,16 +54,6 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="course" class="col-sm-2 col-form-label">Course</label>
-                <div class="col-sm-10">
-                    <form:select path="courseId" class="form-control" id="course">
-                        <c:forEach var="course" items="${courses}">
-                            <option value="${course.id}">${course.name}</option>
-                        </c:forEach>
-                    </form:select>
-                </div>
-            </div>
-            <div class="form-group row">
                 <div class="col-sm-12 text-right">
                     <button type="button" class="btn btn-secondary" id="back">Back</button>
                     <button type="submit" class="btn btn-dark">${action}</button>
@@ -74,7 +64,7 @@
 
     <script src="${contextPath}/webjars/jquery/jquery.min.js"></script>
     <script src="${contextPath}/webjars/bootstrap/js/bootstrap.min.js"></script>
-    <script src="${contextPath}/index.js"></script>
+    <script src="${contextPath}/common.js"></script>
     <script src="${contextPath}/student/student.js"></script>
 </body>
 </html>

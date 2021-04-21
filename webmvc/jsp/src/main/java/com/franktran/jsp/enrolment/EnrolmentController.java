@@ -1,5 +1,7 @@
 package com.franktran.jsp.enrolment;
 
+import com.franktran.jsp.course.CourseService;
+import com.franktran.jsp.student.StudentService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,9 +16,15 @@ import java.util.Objects;
 public class EnrolmentController {
 
     private final EnrolmentService enrolmentService;
+    private final CourseService courseService;
+    private final StudentService studentService;
 
-    public EnrolmentController(EnrolmentService enrolmentService) {
+    public EnrolmentController(EnrolmentService enrolmentService,
+                               CourseService courseService,
+                               StudentService studentService) {
         this.enrolmentService = enrolmentService;
+        this.courseService = courseService;
+        this.studentService = studentService;
     }
 
     @GetMapping
@@ -29,6 +37,8 @@ public class EnrolmentController {
     @GetMapping("/create-enrolment")
     public String showCreateEnrolment(@ModelAttribute("enrolment") Enrolment enrolment, Model model) {
         model.addAttribute("action", "Create");
+        model.addAttribute("courses", courseService.getAllCourses());
+        model.addAttribute("students", studentService.getAllStudents());
         return "enrolment/save-enrolment";
     }
 

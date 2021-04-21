@@ -22,13 +22,10 @@ public class Student {
   private String name;
   private String email;
   private LocalDate dob;
-  @ManyToMany
-  private List<Course> courses;
 
-  public Student(String name, String email, LocalDate dob, List<Course> courses) {
+  public Student(String name, String email, LocalDate dob) {
     this.name = name;
     this.email = email;
     this.dob = dob;
-    this.courses = courses;
   }
 }

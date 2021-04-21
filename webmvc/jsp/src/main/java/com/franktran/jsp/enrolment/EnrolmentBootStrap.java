@@ -27,9 +27,9 @@ public class EnrolmentBootStrap implements CommandLineRunner {
   @Override
   public void run(String... args) throws Exception {
     List<Enrolment> enrolments = Stream.of(
-        new Enrolment(courseService.getCourseById(1).getId(), studentService.getStudentById(1).getId(), "2021A"),
-        new Enrolment(courseService.getCourseById(2).getId(), studentService.getStudentById(2).getId(), "2021A"),
-        new Enrolment(courseService.getCourseById(3).getId(), studentService.getStudentById(3).getId(), "2021A")
+        new Enrolment(courseService.getCourseById(1), studentService.getStudentById(1), "2021A"),
+        new Enrolment(courseService.getCourseById(2), studentService.getStudentById(2), "2021A"),
+        new Enrolment(courseService.getCourseById(3), studentService.getStudentById(3), "2021A")
     ).collect(Collectors.toList());
 
     enrolmentRepository.saveAll(enrolments);

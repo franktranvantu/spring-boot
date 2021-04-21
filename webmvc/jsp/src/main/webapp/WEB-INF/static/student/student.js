@@ -1,6 +1,6 @@
 $(function() {
   $('#back').click(() => {
-    window.location.href = '/student-management/student';
+    window.location.href = '/enrolment-management/student';
   });
 
   $('.delete-student-link').click(e => {
@@ -12,6 +12,6 @@ $(function() {
   $('#delete-student-btn').click(() => {
     const studentId = $('#student-id-to-delete').val();
     $('#delete-student-modal').modal('hide');
-    window.location.href = `/student-management/student/delete-student/${studentId}`;
+    window.location.href = `/enrolment-management/student/delete-student/${studentId}`;
   });
 });

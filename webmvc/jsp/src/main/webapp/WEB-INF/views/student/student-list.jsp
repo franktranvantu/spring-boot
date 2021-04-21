@@ -5,7 +5,7 @@
 <head>
     <title>Student Management</title>
     <link rel="stylesheet" href="${contextPath}/webjars/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="${contextPath}/index.css">
+    <link rel="stylesheet" href="${contextPath}/common.css">
     <link rel="stylesheet" href="${contextPath}/student/student.css">
 </head>
 <body>
@@ -89,7 +89,7 @@
 
     <script src="${contextPath}/webjars/jquery/jquery.min.js"></script>
     <script src="${contextPath}/webjars/bootstrap/js/bootstrap.min.js"></script>
-    <script src="${contextPath}/index.js"></script>
+    <script src="${contextPath}/common.js"></script>
     <script src="${contextPath}/student/student.js"></script>
 </body>
 </html>

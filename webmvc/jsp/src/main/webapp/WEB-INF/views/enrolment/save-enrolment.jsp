@@ -6,7 +6,7 @@
 <head>
     <title>${action} Enrolment</title>
     <link rel="stylesheet" href="${contextPath}/webjars/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="${contextPath}/index.css">
+    <link rel="stylesheet" href="${contextPath}/common.css">
     <link rel="stylesheet" href="${contextPath}/enrolment/enrolment.css">
 </head>
 <body>
@@ -33,34 +33,32 @@
     </nav>
     <div class="container save-enrolment">
         <h1 class="text-center mb-4">${action} Enrolment</h1>
-        <form:form action="${contextPath}/enrolment/save-enrolment" method="post" modelAttribute="enrolment">
+        <form:form action="${contextPath}/save-enrolment" method="post" modelAttribute="enrolment">
             <form:hidden path="id" />
-            <div class="form-group row">
-                <label for="name" class="col-sm-2 col-form-label">Name</label>
-                <div class="col-sm-10">
-                    <form:input path="name" class="form-control" id="name" />
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="email" class="col-sm-2 col-form-label">Email</label>
-                <div class="col-sm-10">
-                    <form:input path="email" class="form-control" id="email" />
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="dob" class="col-sm-2 col-form-label">Birthday</label>
-                <div class="col-sm-10">
-                    <form:input path="dob" class="form-control" id="dob" />
-                </div>
-            </div>
             <div class="form-group row">
                 <label for="course" class="col-sm-2 col-form-label">Course</label>
                 <div class="col-sm-10">
-                    <form:select path="courseId" class="form-control" id="course">
+                    <form:select path="course" class="form-control" id="course">
                         <c:forEach var="course" items="${courses}">
-                            <option value="${course.id}">${course.name}</option>
+                            <option value="${course.id}" selected="${enrolment.course.id == course.id ? 'selected' : ''}">${course.name}</option>
                         </c:forEach>
                     </form:select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="student" class="col-sm-2 col-form-label">Student</label>
+                <div class="col-sm-10">
+                    <form:select path="student" class="form-control" id="student">
+                        <c:forEach var="student" items="${students}">
+                            <option value="${student.id}">${student.name}</option>
+                        </c:forEach>
+                    </form:select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="semester" class="col-sm-2 col-form-label">Semester</label>
+                <div class="col-sm-10">
+                    <form:input path="semester" class="form-control" id="semester" />
                 </div>
             </div>
             <div class="form-group row">
@@ -74,7 +72,7 @@
 
     <script src="${contextPath}/webjars/jquery/jquery.min.js"></script>
     <script src="${contextPath}/webjars/bootstrap/js/bootstrap.min.js"></script>
-    <script src="${contextPath}/index.js"></script>
+    <script src="${contextPath}/common.js"></script>
     <script src="${contextPath}/enrolment/enrolment.js"></script>
 </body>
 </html>

@@ -1,0 +1,2 @@
+# Accessing the H2 Console
+After starting the application, we can navigate to [http://localhost:8080/enrolment-management/h2-console](http://localhost:8080/enrolment-management/h2-console), which will present us with a login page.

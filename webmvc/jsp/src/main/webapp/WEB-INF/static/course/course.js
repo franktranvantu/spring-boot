@@ -1,6 +1,6 @@
 $(function() {
   $('#back').click(() => {
-    window.location.href = '/student-management/course';
+    window.location.href = '/enrolment-management/course';
   });
 
   $('.delete-course-link').click(e => {
@@ -12,6 +12,6 @@ $(function() {
   $('#delete-course-btn').click(() => {
     const courseId = $('#course-id-to-delete').val();
     $('#delete-course-modal').modal('hide');
-    window.location.href = `/student-management/course/delete-course/${courseId}`;
+    window.location.href = `/enrolment-management/course/delete-course/${courseId}`;
   });
 });

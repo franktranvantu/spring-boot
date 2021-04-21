@@ -29,15 +29,15 @@ public class EnrolmentService {
 
   public Enrolment updateEnrolment(long id, Enrolment enrolment) {
     Enrolment existEnrolment = enrolmentRepository.findById(id).orElseThrow(() -> new IllegalArgumentException(String.format("Enrolment with id %s does not exist", id)));
-    if (Objects.nonNull(enrolment.getCourseId())
-        && !Objects.equals(existEnrolment.getCourseId(), enrolment.getCourseId())
+    if (Objects.nonNull(enrolment.getCourse().getId())
+        && !Objects.equals(existEnrolment.getCourse().getId(), enrolment.getCourse().getId())
         && Objects.nonNull(enrolment.getSemester())
         && !Objects.equals(existEnrolment.getSemester(), enrolment.getSemester())) {
-      Optional<Enrolment> enrolmentByStudentId = enrolmentRepository.findEnrolmentByCourseIdAndSemester(enrolment.getStudentId(), enrolment.getSemester());
+      Optional<Enrolment> enrolmentByStudentId = enrolmentRepository.findEnrolmentByCourseIdAndSemester(enrolment.getStudent().getId(), enrolment.getSemester());
       if (enrolmentByStudentId.isPresent()) {
         throw new IllegalArgumentException("Course with semester taken");
       }
-      existEnrolment.setCourseId(enrolment.getCourseId());
+      existEnrolment.getCourse().setId(enrolment.getCourse().getId());
       existEnrolment.setSemester(enrolment.getSemester());
     }
     return enrolmentRepository.save(existEnrolment);

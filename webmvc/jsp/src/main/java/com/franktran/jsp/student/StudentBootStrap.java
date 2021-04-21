@@ -1,13 +1,11 @@
 package com.franktran.jsp.student;
 
-import com.franktran.jsp.course.CourseService;
 import com.github.javafaker.Faker;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import java.time.ZoneId;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -17,11 +15,9 @@ import java.util.stream.Stream;
 public class StudentBootStrap implements CommandLineRunner {
 
   private final StudentRepository studentRepository;
-  private final CourseService courseService;
 
-  public StudentBootStrap(StudentRepository studentRepository, CourseService courseService) {
+  public StudentBootStrap(StudentRepository studentRepository) {
     this.studentRepository = studentRepository;
-    this.courseService = courseService;
   }
 
   @Override
@@ -31,20 +27,17 @@ public class StudentBootStrap implements CommandLineRunner {
         new Student(
             faker.name().name(),
             "faker1@gmail.com",
-            faker.date().birthday(10, 50).toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
-            Arrays.asList(courseService.getCourseById(1), courseService.getCourseById(2))
+            faker.date().birthday(10, 50).toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
         ),
         new Student(
             faker.name().name(),
             "faker2@gmail.com",
-            faker.date().birthday(10, 50).toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
-            Arrays.asList(courseService.getCourseById(2))
+            faker.date().birthday(10, 50).toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
         ),
         new Student(
             faker.name().name(),
             "faker3@gmail.com",
-            faker.date().birthday(10, 50).toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
-            courseService.getAllCourses()
+            faker.date().birthday(10, 50).toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
         )
     ).collect(Collectors.toList());
 

@@ -1,12 +1,13 @@
 package com.franktran.jsp.course;
 
-import com.franktran.jsp.student.Student;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
-import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
 @Data
@@ -18,8 +19,6 @@ public class Course {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
   private String name;
-  @ManyToMany
-  private List<Student> students;
 
   public Course(String name) {
     this.name = name;

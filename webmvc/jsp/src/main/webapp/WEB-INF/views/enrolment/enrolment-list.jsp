@@ -5,6 +5,8 @@
 <head>
   <title>Enrolment Management</title>
   <link rel="stylesheet" href="${contextPath}/webjars/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="${contextPath}/common.css">
+  <link rel="stylesheet" href="${contextPath}/enrolment/enrolment.css">
 </head>
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -41,7 +43,9 @@
       <thead class="thead-dark">
       <tr class="text-center">
         <th>Id</th>
-        <th>Name</th>
+        <th>Course</th>
+        <th>Student</th>
+        <th>Semester</th>
         <th colspan="2">Actions</th>
       </tr>
       </thead>
@@ -49,32 +53,34 @@
       <c:forEach var="enrolment" items="${enrolments}">
         <tr>
           <td class="text-center">${enrolment.id}</td>
-          <td>${enrolment.name}</td>
-          <td class="text-center"><a href="${contextPath}/course/update-course/${course.id}">Update</a></td>
-          <td class="text-center"><a href="#" class="delete-course-link" data-id="${course.id}">Delete</a></td>
+          <td>${enrolment.course.name}</td>
+          <td>${enrolment.student.name}</td>
+          <td>${enrolment.semester}</td>
+          <td class="text-center"><a href="${contextPath}/update-enrolment/${enrolment.id}">Update</a></td>
+          <td class="text-center"><a href="#" class="delete-enrolment-link" data-id="${enrolment.id}">Delete</a></td>
         </tr>
       </c:forEach>
       </tbody>
     </table>
 
-    <input type="hidden" id="course-id-to-delete" />
+    <input type="hidden" id="enrolment-id-to-delete" />
 
     <!-- Delete Enrolment Modal -->
-    <div class="modal fade" id="delete-course-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal fade" id="delete-enrolment-modal" tabindex="-1" role="dialog" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Delete Course</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Delete Enrolment</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
-            Are you sure you want to delete course permanently?
+            Are you sure you want to delete enrolment permanently?
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-danger" id="delete-course-btn">Delete</button>
+            <button type="button" class="btn btn-danger" id="delete-enrolment-btn">Delete</button>
           </div>
         </div>
       </div>
@@ -83,6 +89,7 @@
 
   <script src="${contextPath}/webjars/jquery/jquery.min.js"></script>
   <script src="${contextPath}/webjars/bootstrap/js/bootstrap.min.js"></script>
-  <script src="${contextPath}/index.js"></script>
+  <script src="${contextPath}/common.js"></script>
+  <script src="${contextPath}/enrolment/enrolment.js"></script>
 </body>
 </html>

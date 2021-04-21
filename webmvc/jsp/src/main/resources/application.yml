@@ -5,14 +5,17 @@ server:
 spring:
   profiles:
     active: home
-
+  h2:
+    console:
+      enabled: true
+  datasource:
+    url: jdbc:h2:mem:testdb
   jpa:
     show-sql: true
   mvc:
     view:
       prefix: /WEB-INF/views/
       suffix: .jsp
-
   web:
     resources:
       static-locations: /WEB-INF/static

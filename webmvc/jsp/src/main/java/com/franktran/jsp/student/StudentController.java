@@ -1,14 +1,8 @@
 package com.franktran.jsp.student;
 
-import com.franktran.jsp.course.Course;
-import com.franktran.jsp.course.CourseService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Objects;
@@ -18,25 +12,21 @@ import java.util.Objects;
 public class StudentController {
 
   private final StudentService studentService;
-  private final CourseService courseService;
 
-  public StudentController(StudentService studentService, CourseService courseService) {
+  public StudentController(StudentService studentService) {
     this.studentService = studentService;
-    this.courseService = courseService;
   }
 
   @GetMapping
   public String index(Model model) {
-    List<Student> students = studentService.getStudents();
+    List<Student> students = studentService.getAllStudents();
     model.addAttribute("students", students);
     return "student/student-list";
   }
 
   @GetMapping("/create-student")
   public String showCreateStudent(@ModelAttribute("student") Student student, Model model) {
-    List<Course> courses = courseService.getAllCourses();
     model.addAttribute("action", "Create");
-    model.addAttribute("courses", courses);
     return "student/save-student";
   }
 
