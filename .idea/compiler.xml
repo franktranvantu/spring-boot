@@ -15,6 +15,7 @@
         <module name="user-service" />
         <module name="thymeleaf" />
         <module name="cloud-gateway" />
+        <module name="scheduler" />
         <module name="spring-boot-data-jdbc" />
         <module name="inventory-service" />
         <module name="spring-boot-crud-in-memory" />
@@ -45,6 +46,7 @@
       <module name="payment-service" target="1.8" />
       <module name="producer" target="1.8" />
       <module name="purchaseOrder-service" target="1.8" />
+      <module name="scheduler" target="1.8" />
       <module name="service-registry" target="1.8" />
       <module name="spring-boot-crud" target="1.8" />
       <module name="spring-boot-crud-in-memory" target="1.8" />
@@ -71,6 +73,7 @@
       <module name="jsp" options="-parameters" />
       <module name="payment-service" options="-parameters" />
       <module name="producer" options="-parameters" />
+      <module name="scheduler" options="-parameters" />
       <module name="service-registry" options="-parameters" />
       <module name="spring-boot-crud" options="-parameters" />
       <module name="spring-boot-crud-in-memory" options="-parameters" />
