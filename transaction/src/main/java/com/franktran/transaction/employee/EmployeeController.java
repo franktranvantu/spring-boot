@@ -1,6 +1,7 @@
 package com.franktran.transaction.employee;
 
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,7 +16,7 @@ public class EmployeeController {
     }
 
     @PostMapping
-    public String createEmployee(EmployeeRequestVO employeeRequest) {
+    public String createEmployee(@RequestBody EmployeeRequestVO employeeRequest) {
         return employeeService.createEmployee(employeeRequest);
     }
 }

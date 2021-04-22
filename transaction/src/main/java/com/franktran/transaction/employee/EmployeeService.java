@@ -20,10 +20,11 @@ public class EmployeeService {
     public String createEmployee(EmployeeRequestVO employeeRequest) {
         Department department = new Department();
         department.setName(employeeRequest.getDepartmentName());
-        departmentRepository.save(department);
+        department = departmentRepository.save(department);
 
         Employee employee = new Employee();
         employee.setName(employeeRequest.getEmployeeName());
+        employee.setDepartmentId(department.getId());
         employeeRepository.save(employee);
 
         return "Success";
