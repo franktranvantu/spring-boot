@@ -1,0 +1,42 @@
+2021-04-22 15:21:33,125 [INFO] com.franktran.logging.LoggingApplication [main] Starting LoggingApplication using Java 1.8.0_151 on C88-WS-DEV-FRANK with PID 12348 (C:\Users\frank.tran\Documents\Projects\Java\teamtreehouse\spring-boot\logging\target\classes started by frank.tran in C:\Users\frank.tran\Documents\Projects\Java\teamtreehouse\spring-boot)
+2021-04-22 15:21:33,127 [INFO] com.franktran.logging.LoggingApplication [main] The following profiles are active: office
+2021-04-22 15:21:33,795 [INFO] org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8081 (http)
+2021-04-22 15:21:33,801 [INFO] org.apache.catalina.core.StandardService [main] Starting service [Tomcat]
+2021-04-22 15:21:33,802 [INFO] org.apache.catalina.core.StandardEngine [main] Starting Servlet engine: [Apache Tomcat/9.0.45]
+2021-04-22 15:21:33,856 [INFO] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [main] Initializing Spring embedded WebApplicationContext
+2021-04-22 15:21:33,856 [INFO] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 694 ms
+2021-04-22 15:21:33,981 [INFO] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor [main] Initializing ExecutorService 'applicationTaskExecutor'
+2021-04-22 15:21:34,106 [INFO] org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8081 (http) with context path ''
+2021-04-22 15:21:34,113 [INFO] com.franktran.logging.LoggingApplication [main] Started LoggingApplication in 1.879 seconds (JVM running for 2.649)
+2021-04-22 15:21:39,864 [INFO] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [http-nio-8081-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-04-22 15:21:39,865 [INFO] org.springframework.web.servlet.DispatcherServlet [http-nio-8081-exec-1] Initializing Servlet 'dispatcherServlet'
+2021-04-22 15:21:39,866 [INFO] org.springframework.web.servlet.DispatcherServlet [http-nio-8081-exec-1] Completed initialization in 1 ms
+2021-04-22 15:26:12,239 [ERROR] org.springframework.boot.diagnostics.LoggingFailureAnalysisReporter [main] 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Failed to bind properties under 'logging.level' to java.util.Map<java.lang.String, org.springframework.boot.logging.LogLevel>:
+
+    Reason: No converter found capable of converting from type [java.lang.String] to type [java.util.Map<java.lang.String, org.springframework.boot.logging.LogLevel>]
+
+Action:
+
+Update your application's configuration
+
+2021-04-22 18:06:41,878 [INFO] com.franktran.logging.LoggingApplication [main] Starting LoggingApplication using Java 1.8.0_151 on C88-WS-DEV-FRANK with PID 19568 (C:\Users\frank.tran\Documents\Projects\Java\teamtreehouse\spring-boot\logging\target\classes started by frank.tran in C:\Users\frank.tran\Documents\Projects\Java\teamtreehouse\spring-boot)
+2021-04-22 18:06:41,880 [INFO] com.franktran.logging.LoggingApplication [main] The following profiles are active: office
+2021-04-22 18:06:42,706 [INFO] org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8081 (http)
+2021-04-22 18:06:42,713 [INFO] org.apache.catalina.core.StandardService [main] Starting service [Tomcat]
+2021-04-22 18:06:42,713 [INFO] org.apache.catalina.core.StandardEngine [main] Starting Servlet engine: [Apache Tomcat/9.0.45]
+2021-04-22 18:06:42,775 [INFO] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [main] Initializing Spring embedded WebApplicationContext
+2021-04-22 18:06:42,775 [INFO] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 835 ms
+2021-04-22 18:06:42,950 [INFO] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor [main] Initializing ExecutorService 'applicationTaskExecutor'
+2021-04-22 18:06:43,086 [INFO] org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8081 (http) with context path ''
+2021-04-22 18:06:43,093 [INFO] com.franktran.logging.LoggingApplication [main] Started LoggingApplication in 2.224 seconds (JVM running for 3.022)
+2021-04-22 18:07:59,817 [INFO] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [http-nio-8081-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-04-22 18:07:59,818 [INFO] org.springframework.web.servlet.DispatcherServlet [http-nio-8081-exec-1] Initializing Servlet 'dispatcherServlet'
+2021-04-22 18:07:59,819 [INFO] org.springframework.web.servlet.DispatcherServlet [http-nio-8081-exec-1] Completed initialization in 1 ms

@@ -1,0 +1,15 @@
+spring:
+  profiles:
+    active: office
+
+logging:
+  level:
+    com:
+      franktran:
+        controller: trace
+        service: debug
+  pattern:
+    console: "%d [%level] %c{1.} [%t] %m%n"
+    file: "%d [%level] %c{1.} [%t] %m%n"
+  file:
+    name: appLog.log

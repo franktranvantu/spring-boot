@@ -8,27 +8,26 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="purchaseOrder-service" />
+        <module name="mail" />
         <module name="department-service" />
         <module name="jsp" />
         <module name="data-jpa" />
-        <module name="spring-boot-kafka" />
-        <module name="user-service" />
         <module name="thymeleaf" />
+        <module name="user-service" />
+        <module name="spring-boot-kafka" />
         <module name="cloud-gateway" />
         <module name="scheduler" />
-        <module name="spring-boot-data-jdbc" />
-        <module name="inventory-service" />
         <module name="spring-boot-crud-in-memory" />
         <module name="payment-service" />
-        <module name="spring-boot-crud" />
+        <module name="inventory-service" />
         <module name="common-dto" />
         <module name="spring-boot-security" />
         <module name="hystrix-dashboard" />
-        <module name="spring-boot-jdbc" />
         <module name="producer" />
+        <module name="logging" />
         <module name="spring-boot-oauth-facebook" />
-        <module name="service-registry" />
         <module name="spring-boot-security-jpa" />
+        <module name="service-registry" />
         <module name="consumer" />
       </profile>
     </annotationProcessing>
@@ -43,6 +42,8 @@
       <module name="inventory-service" target="1.8" />
       <module name="jdbc-api" target="1.8" />
       <module name="jsp" target="1.8" />
+      <module name="logging" target="1.8" />
+      <module name="mail" target="1.8" />
       <module name="payment-service" target="1.8" />
       <module name="producer" target="1.8" />
       <module name="purchaseOrder-service" target="1.8" />
@@ -71,6 +72,8 @@
       <module name="inventory-service" options="-parameters" />
       <module name="jdbc-api" options="-parameters" />
       <module name="jsp" options="-parameters" />
+      <module name="logging" options="-parameters" />
+      <module name="mail" options="-parameters" />
       <module name="payment-service" options="-parameters" />
       <module name="producer" options="-parameters" />
       <module name="scheduler" options="-parameters" />
