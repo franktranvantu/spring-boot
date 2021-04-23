@@ -1,0 +1,23 @@
+{{>header}}
+  <h1 align="center">Student List</h1>
+  <table border="1" align="center">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Birthday</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#students}}
+        <tr>
+          <th>{{id}}</th>
+          <th>{{name}}</th>
+          <th>{{email}}</th>
+          <th>{{dob}}</th>
+        </tr>
+      {{/students}}
+    </tbody>
+    </table>
+{{>footer}}

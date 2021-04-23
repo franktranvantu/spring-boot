@@ -1,0 +1,12 @@
+server:
+  servlet:
+    context-path: /mustache
+
+spring:
+  profiles:
+    active: office
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
