@@ -1,6 +1,6 @@
 server:
   servlet:
-    context-path: /logging
+    context-path: /lombok
 
 spring:
   profiles:
