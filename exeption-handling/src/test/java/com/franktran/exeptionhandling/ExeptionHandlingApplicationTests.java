@@ -1,0 +1,13 @@
+package com.franktran.exeptionhandling;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class ExeptionHandlingApplicationTests {
+
+    @Test
+    void contextLoads() {
+    }
+
+}

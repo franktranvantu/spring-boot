@@ -1,5 +1,6 @@
-package com.franktran.datajpa.student;
+package com.franktran.exeptionhandling.student;
 
+import com.franktran.exeptionhandling.exception.StudentNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -34,7 +35,7 @@ public class StudentService {
 
   @Transactional
   public Student updateStudent(long studentId, Student student) {
-    Student existStudent = studentRepository.findById(studentId).orElseThrow(() -> new IllegalArgumentException(String.format("Student with id %s not exists", studentId)));
+    Student existStudent = studentRepository.findById(studentId).orElseThrow(() -> new StudentNotFoundException(studentId));
     if (Objects.nonNull(student.getName()) && !Objects.equals(existStudent.getName(), student.getName())) {
       existStudent.setName(student.getName());
     }
@@ -52,7 +53,7 @@ public class StudentService {
   public void deleteStudent(long studentId) {
     boolean existsById = studentRepository.existsById(studentId);
     if (!existsById) {
-      throw new IllegalArgumentException(String.format("Student with id %s not exists", studentId));
+      throw new StudentNotFoundException(studentId);
     }
     studentRepository.deleteById(studentId);
   }
