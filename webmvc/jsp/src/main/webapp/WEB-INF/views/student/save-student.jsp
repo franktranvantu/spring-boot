@@ -32,6 +32,9 @@
             </form>
         </div>
     </nav>
+    <div class="alert alert-warning ml-auto position-absolute message" role="alert">
+        ${result.message}
+    </div>
     <div class="container save-student">
         <h1 class="text-center mb-4">${action} Student</h1>
         <form:form action="${contextPath}/student/save-student" method="post" modelAttribute="student">
@@ -67,6 +70,6 @@
     <script src="${contextPath}/webjars/bootstrap/js/bootstrap.min.js"></script>
     <script src="${contextPath}/webjars/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
     <script src="${contextPath}/common.js"></script>
-    <script src="${contextPath}/student/student.js"></script>
+    <script src="${contextPath}/student/save-student.js"></script>
 </body>
 </html>

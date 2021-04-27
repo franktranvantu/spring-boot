@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <html>
@@ -30,6 +31,11 @@
             </form>
         </div>
     </nav>
+    <c:if test="${not empty result}">
+        <div class="alert alert-${result.status == 'SUCCESS' ? 'success' : 'warning'} ml-auto position-absolute message" role="alert">
+            ${result.message}
+        </div>
+    </c:if>
     <div class="container">
         <h1 class="text-center display-1">Student Management</h1>
         <form action="${contextPath}/student/create-student">
@@ -55,7 +61,7 @@
                         <td class="text-center">${student.id}</td>
                         <td>${student.name}</td>
                         <td>${student.email}</td>
-                        <td class="text-center">${student.dob}</td>
+                        <td class="text-center"><spring:eval expression="student.dob" /></td>
                         <td class="text-center"><a href="${contextPath}/student/update-student/${student.id}">Update</a></td>
                         <td class="text-center"><a href="#" class="delete-student-link" data-id="${student.id}">Delete</a></td>
                     </tr>
@@ -90,6 +96,6 @@
     <script src="${contextPath}/webjars/jquery/jquery.min.js"></script>
     <script src="${contextPath}/webjars/bootstrap/js/bootstrap.min.js"></script>
     <script src="${contextPath}/common.js"></script>
-    <script src="${contextPath}/student/student.js"></script>
+    <script src="${contextPath}/student/student-list.js"></script>
 </body>
 </html>

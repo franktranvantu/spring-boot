@@ -1,5 +1,6 @@
 package com.franktran.jsp.student;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,7 +27,7 @@ public class StudentService {
   public Student createStudent(Student student) {
     Optional<Student> studentOptional = studentRepository.findStudentByEmail(student.getEmail());
     if (studentOptional.isPresent()) {
-      throw new IllegalArgumentException("email taken");
+      throw new IllegalArgumentException("Email already exists");
     }
     return studentRepository.save(student);
   }
@@ -39,20 +40,27 @@ public class StudentService {
     if (Objects.nonNull(student.getEmail()) && !Objects.equals(existStudent.getEmail(), student.getEmail())) {
       Optional<Student> studentOptional = studentRepository.findStudentByEmail(student.getEmail());
       if (studentOptional.isPresent()) {
-        throw new IllegalArgumentException("Email taken");
+        throw new IllegalArgumentException("Email already exists");
       }
       existStudent.setEmail(student.getEmail());
+    }
+    if (Objects.nonNull(student.getDob()) && !Objects.equals(existStudent.getDob(), student.getDob())) {
+      existStudent.setDob(student.getDob());
     }
 
     return studentRepository.save(existStudent);
   }
 
   public void deleteStudent(long studentId) {
-    boolean existsById = studentRepository.existsById(studentId);
-    if (!existsById) {
+    Optional<Student> student = studentRepository.findById(studentId);
+    if (!student.isPresent()) {
       throw new IllegalArgumentException(String.format("Student with id %s not exists", studentId));
     }
-    studentRepository.deleteById(studentId);
+    try {
+      studentRepository.deleteById(studentId);
+    } catch (DataIntegrityViolationException e) {
+      throw new IllegalStateException(String.format("Student %s is being referred by others!", student.get().getName()));
+    }
   }
 
 }
