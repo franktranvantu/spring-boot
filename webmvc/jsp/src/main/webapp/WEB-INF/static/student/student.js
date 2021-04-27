@@ -14,4 +14,11 @@ $(function() {
     $('#delete-student-modal').modal('hide');
     window.location.href = `/enrolment-management/student/delete-student/${studentId}`;
   });
+
+  const options = {
+    format: 'dd/mm/yyyy',
+    todayHighlight: true,
+    autoclose: true
+  }
+  $('#dob').datepicker(options);
 });

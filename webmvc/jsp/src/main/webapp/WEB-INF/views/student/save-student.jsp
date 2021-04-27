@@ -6,6 +6,7 @@
 <head>
     <title>${action} Student</title>
     <link rel="stylesheet" href="${contextPath}/webjars/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${contextPath}/webjars/bootstrap-datepicker/css/bootstrap-datepicker.min.css">
     <link rel="stylesheet" href="${contextPath}/common.css">
     <link rel="stylesheet" href="${contextPath}/student/student.css">
 </head>
@@ -50,7 +51,7 @@
             <div class="form-group row">
                 <label for="dob" class="col-sm-2 col-form-label">Birthday</label>
                 <div class="col-sm-10">
-                    <form:input path="dob" class="form-control" id="dob" />
+                    <form:input path="dob" class="form-control" id="dob" placeholder="dd/mm/yyyy" />
                 </div>
             </div>
             <div class="form-group row">
@@ -64,6 +65,7 @@
 
     <script src="${contextPath}/webjars/jquery/jquery.min.js"></script>
     <script src="${contextPath}/webjars/bootstrap/js/bootstrap.min.js"></script>
+    <script src="${contextPath}/webjars/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
     <script src="${contextPath}/common.js"></script>
     <script src="${contextPath}/student/student.js"></script>
 </body>
