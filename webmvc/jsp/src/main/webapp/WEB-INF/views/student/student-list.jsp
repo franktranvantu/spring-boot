@@ -32,7 +32,7 @@
         </div>
     </nav>
     <c:if test="${not empty result}">
-        <div class="alert alert-${result.status == 'SUCCESS' ? 'success' : 'warning'} ml-auto position-absolute message" role="alert">
+        <div class="alert alert-${result.status == 'SUCCESS' ? 'success' : 'danger'} ml-auto position-absolute message" role="alert">
             ${result.message}
         </div>
     </c:if>

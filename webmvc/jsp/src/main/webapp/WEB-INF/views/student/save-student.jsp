@@ -32,7 +32,7 @@
             </form>
         </div>
     </nav>
-    <div class="alert alert-warning ml-auto position-absolute message" role="alert">
+    <div class="alert alert-danger ml-auto position-absolute message" role="alert">
         ${result.message}
     </div>
     <div class="container save-student">
