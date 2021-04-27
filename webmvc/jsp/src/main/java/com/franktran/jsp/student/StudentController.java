@@ -6,8 +6,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Objects;
 
@@ -35,7 +37,11 @@ public class StudentController {
   }
 
   @PostMapping("/save-student")
-  public String saveStudent(@ModelAttribute("student") Student student, Model model) {
+  public String saveStudent(@ModelAttribute("student") @Valid Student student, BindingResult bindingResult, Model model) {
+    if (bindingResult.hasErrors()) {
+      model.addAttribute("action", Objects.isNull(student.getId()) ? "Create" : "Update");
+      return "student/save-student";
+    }
     ResultDto result = new ResultDto();
     try {
       if (Objects.isNull(student.getId())) {

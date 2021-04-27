@@ -42,13 +42,19 @@
             <div class="form-group row">
                 <label for="name" class="col-sm-2 col-form-label">Name</label>
                 <div class="col-sm-10">
-                    <form:input path="name" class="form-control" id="name" />
+                    <form:input path="name" class="form-control" id="name" required="required" />
+                </div>
+                <div class="invalid-feedback">
+                    Name is require
+                </div>
+                <div class="invalid-feedback">
+                    <form:errors path="name" />
                 </div>
             </div>
             <div class="form-group row">
                 <label for="email" class="col-sm-2 col-form-label">Email</label>
                 <div class="col-sm-10">
-                    <form:input path="email" class="form-control" id="email" />
+                    <form:input path="email" class="form-control" id="email" required="required" />
                 </div>
             </div>
             <div class="form-group row">
