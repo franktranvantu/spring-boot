@@ -1,14 +1,16 @@
 package com.franktran.jsp.enrolment;
 
+import com.franktran.jsp.course.Course;
 import com.franktran.jsp.course.CourseService;
+import com.franktran.jsp.dto.ResultDto;
+import com.franktran.jsp.dto.ResultStatus;
 import com.franktran.jsp.student.StudentService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Objects;
 
@@ -43,19 +45,33 @@ public class EnrolmentController {
     }
 
     @PostMapping("/save-enrolment")
-    public String saveEnrolment(@ModelAttribute("enrolment") Enrolment enrolment, Model model) {
+    public String saveEnrolment(@ModelAttribute("enrolment") @Valid Enrolment enrolment, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("action", Objects.isNull(enrolment.getId()) ? "Create" : "Update");
+            return "enrolment/save-enrolment";
+        }
+        ResultDto result = new ResultDto();
         try {
             if (Objects.isNull(enrolment.getId())) {
                 model.addAttribute("action", "Create");
                 enrolmentService.createEnrolment(enrolment);
+                result.setMessage("Created enrolment successful!");
+                model.addAttribute("result", result);
             } else {
                 model.addAttribute("action", "Update");
                 enrolmentService.updateEnrolment(enrolment.getId(), enrolment);
+                result.setMessage("Updated enrolment successful!");
+                model.addAttribute("result", result);
             }
-            return "redirect:/";
+            result.setStatus(ResultStatus.SUCCESS);
+            model.addAttribute("result", result);
+            model.addAttribute("enrolments", enrolmentService.getAllEnrolments());
+            return "enrolment/enrolment-list";
         } catch (Exception e) {
-            model.addAttribute("error", e.getMessage());
-            return "enrolment/save-enrolment";
+            result.setStatus(ResultStatus.FAIL);
+            result.setMessage(e.getMessage());
+            model.addAttribute("result", result);
+            return "enrolment/enrolment-course";
         }
     }
 
@@ -69,9 +85,21 @@ public class EnrolmentController {
         return "enrolment/save-enrolment";
     }
 
-    @GetMapping("/delete-enrolment/{id}")
-    public String deleteEnrolment(@PathVariable int id) {
-        enrolmentService.deleteEnrolment(id);
-        return "redirect:/";
+    @PostMapping("/delete-enrolment")
+    public String deleteEnrolment(@RequestParam int id, Model model) {
+        ResultDto result = new ResultDto();
+        try {
+            enrolmentService.deleteEnrolmentById(id);
+            result.setStatus(ResultStatus.SUCCESS);
+            result.setMessage("Deleted enrolment successful!");
+            model.addAttribute("result", result);
+        } catch (Exception e) {
+            result.setStatus(ResultStatus.FAIL);
+            result.setMessage(e.getMessage());
+            model.addAttribute("result", result);
+        }
+        List<Enrolment> enrolments = enrolmentService.getAllEnrolments();
+        model.addAttribute("enrolments", enrolments);
+        return "enrolment/enrolment-list";
     }
 }

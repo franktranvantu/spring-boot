@@ -32,27 +32,34 @@
         </div>
     </nav>
     <div class="container save-course">
-        <h1 class="text-center mb-4">${action} Course</h1>
-        <form:form action="${contextPath}/course/save-course" method="post" modelAttribute="course">
+        <h1 class="text-center mt-4 mb-4">${action} Course</h1>
+        <form:form action="${contextPath}/course/save-course" method="post" modelAttribute="course" id="save-course">
             <form:hidden path="id" />
             <div class="form-group row">
                 <label for="name" class="col-sm-2 col-form-label">Name</label>
                 <div class="col-sm-10">
-                    <form:input path="name" class="form-control" id="name" />
+                    <form:input path="name" class="form-control" id="name" aria-describedby="name" />
+                    <div id="name" class="invalid-feedback">
+                        Name is mandatory
+                    </div>
+                    <div id="name" class="invalid-feedback">
+                        <form:errors path="name" />
+                    </div>
                 </div>
             </div>
             <div class="form-group row">
                 <div class="col-sm-12 text-right">
                     <button type="button" class="btn btn-secondary" id="back">Back</button>
-                    <button type="submit" class="btn btn-dark">${action}</button>
+                    <button type="submit" class="btn btn-primary">${action}</button>
                 </div>
             </div>
         </form:form>
     </div>
 
+    <script src="${contextPath}/webjars/lodash/lodash.min.js"></script>
     <script src="${contextPath}/webjars/jquery/jquery.min.js"></script>
     <script src="${contextPath}/webjars/bootstrap/js/bootstrap.min.js"></script>
     <script src="${contextPath}/common.js"></script>
-    <script src="${contextPath}/course/course.js"></script>
+    <script src="${contextPath}/course/save-course.js"></script>
 </body>
 </html>

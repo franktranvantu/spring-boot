@@ -32,47 +32,66 @@
         </div>
     </nav>
     <div class="container save-enrolment">
-        <h1 class="text-center mb-4">${action} Enrolment</h1>
-        <form:form action="${contextPath}/save-enrolment" method="post" modelAttribute="enrolment">
+        <h1 class="text-center mt-4 mb-4">${action} Enrolment</h1>
+        <form:form action="${contextPath}/save-enrolment" method="post" modelAttribute="enrolment" id="save-enrolment">
             <form:hidden path="id" />
             <div class="form-group row">
                 <label for="course" class="col-sm-2 col-form-label">Course</label>
                 <div class="col-sm-10">
-                    <form:select path="course" class="form-control" id="course">
+                    <form:select path="course" class="form-control" id="course" aria-describedby="course">
                         <c:forEach var="course" items="${courses}">
                             <option value="${course.id}" ${enrolment.course.id == course.id ? 'selected' : ''}>${course.name}</option>
                         </c:forEach>
                     </form:select>
+                    <div id="course" class="invalid-feedback">
+                        Course is mandatory
+                    </div>
+                    <div id="course" class="invalid-feedback">
+                        <form:errors path="course" />
+                    </div>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="student" class="col-sm-2 col-form-label">Student</label>
                 <div class="col-sm-10">
-                    <form:select path="student" class="form-control" id="student">
+                    <form:select path="student" class="form-control" id="student" aria-describedby="student">
                         <c:forEach var="student" items="${students}">
                             <option value="${student.id}" ${enrolment.student.id == student.id ? 'selected' : ''}>${student.name}</option>
                         </c:forEach>
                     </form:select>
+                    <div id="student" class="invalid-feedback">
+                        Student is mandatory
+                    </div>
+                    <div id="student" class="invalid-feedback">
+                        <form:errors path="student" />
+                    </div>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="semester" class="col-sm-2 col-form-label">Semester</label>
                 <div class="col-sm-10">
-                    <form:input path="semester" class="form-control" id="semester" />
+                    <form:input path="semester" class="form-control" id="semester" aria-describedby="semester"/>
+                    <div id="semester" class="invalid-feedback">
+                        Semester is mandatory
+                    </div>
+                    <div id="semester" class="invalid-feedback">
+                        <form:errors path="semester" />
+                    </div>
                 </div>
             </div>
             <div class="form-group row">
                 <div class="col-sm-12 text-right">
                     <button type="button" class="btn btn-secondary" id="back">Back</button>
-                    <button type="submit" class="btn btn-dark">${action}</button>
+                    <button type="submit" class="btn btn-primary">${action}</button>
                 </div>
             </div>
         </form:form>
     </div>
 
+    <script src="${contextPath}/webjars/lodash/lodash.min.js"></script>
     <script src="${contextPath}/webjars/jquery/jquery.min.js"></script>
     <script src="${contextPath}/webjars/bootstrap/js/bootstrap.min.js"></script>
     <script src="${contextPath}/common.js"></script>
-    <script src="${contextPath}/enrolment/enrolment.js"></script>
+    <script src="${contextPath}/enrolment/save-enrolment.js"></script>
 </body>
 </html>

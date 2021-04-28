@@ -5,11 +5,7 @@ import com.franktran.jsp.dto.ResultStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -77,8 +73,8 @@ public class CourseController {
         return "course/save-course";
     }
 
-    @GetMapping("/delete-course/{id}")
-    public String deleteCourse(@PathVariable int id, Model model) {
+    @PostMapping("/delete-course")
+    public String deleteCourse(@RequestParam int id, Model model) {
         ResultDto result = new ResultDto();
         try {
             courseService.deleteCourse(id);

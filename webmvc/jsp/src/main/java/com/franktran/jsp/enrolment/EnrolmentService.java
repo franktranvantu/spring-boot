@@ -68,7 +68,7 @@ public class EnrolmentService {
     return enrolmentRepository.save(existEnrolment);
   }
 
-  public void deleteEnrolment(long id) {
+  public void deleteEnrolmentById(long id) {
     boolean existsById = enrolmentRepository.existsById(id);
     if (!existsById) {
       throw new IllegalArgumentException(String.format("Enrolment with id %s not exists", id));

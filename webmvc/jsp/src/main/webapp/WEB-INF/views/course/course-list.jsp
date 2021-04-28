@@ -5,6 +5,7 @@
 <head>
     <title>Course Management</title>
     <link rel="stylesheet" href="${contextPath}/webjars/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${contextPath}/webjars/font-awesome/css/all.css">
     <link rel="stylesheet" href="${contextPath}/common.css">
     <link rel="stylesheet" href="${contextPath}/course/course.css">
 </head>
@@ -30,36 +31,43 @@
             </form>
         </div>
     </nav>
-    <div class="container">
-        <h1 class="text-center display-1">Course Management</h1>
-        <form action="${contextPath}/course/create-course">
-            <div class="form-group row">
-                <div class="col-sm-12 text-center">
-                    <button class="btn btn-dark">Create Course</button>
-                </div>
-            </div>
-        </form>
-        <table class="table">
-            <thead class="thead-dark">
-                <tr class="text-center">
-                    <th>Id</th>
-                    <th>Name</th>
-                    <th colspan="2">Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <c:forEach var="course" items="${courses}">
-                    <tr>
-                        <td class="text-center">${course.id}</td>
-                        <td>${course.name}</td>
-                        <td class="text-center"><a href="${contextPath}/course/update-course/${course.id}">Update</a></td>
-                        <td class="text-center"><a href="#" class="delete-course-link" data-id="${course.id}">Delete</a></td>
-                    </tr>
-                </c:forEach>
-            </tbody>
-        </table>
 
-        <input type="hidden" id="course-id-to-delete" />
+    <c:if test="${not empty result}">
+        <div class="alert alert-${result.status == 'SUCCESS' ? 'success' : 'danger'} ml-auto position-absolute message" role="alert">
+                ${result.message}
+        </div>
+    </c:if>
+
+    <div class="container">
+        <div class="card">
+            <div class="card-header bg-transparent d-flex justify-content-between align-items-center">
+                <h4 class="card-title mb-0">All Courses List</h4>
+                <a href="${contextPath}/course/create-course" class="btn btn-primary"><i class="fas fa-user-plus"></i> Add new</a>
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <thead class="thead-dark">
+                    <tr class="text-center">
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <c:forEach var="course" items="${courses}">
+                        <tr>
+                            <td class="text-center">${course.id}</td>
+                            <td>${course.name}</td>
+                            <td class="text-center">
+                                <a href="${contextPath}/course/update-course/${course.id}" class="btn btn-sm btn-primary"><i class="fas fa-pencil-alt"></i></a>
+                                <a href="" class="btn btn-sm btn-danger delete-course-button" data-id="${course.id}"><i class="fas fa-trash"></i></a>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
         <!-- Delete Course Modal -->
         <div class="modal fade" id="delete-course-modal" tabindex="-1" role="dialog" aria-hidden="true">
@@ -76,7 +84,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-danger" id="delete-course-btn">Delete</button>
+                        <button type="button" class="btn btn-danger" id="confirm-delete-course">Delete</button>
                     </div>
                 </div>
             </div>
@@ -86,6 +94,6 @@
     <script src="${contextPath}/webjars/jquery/jquery.min.js"></script>
     <script src="${contextPath}/webjars/bootstrap/js/bootstrap.min.js"></script>
     <script src="${contextPath}/common.js"></script>
-    <script src="${contextPath}/course/course.js"></script>
+    <script src="${contextPath}/course/course-list.js"></script>
 </body>
 </html>
