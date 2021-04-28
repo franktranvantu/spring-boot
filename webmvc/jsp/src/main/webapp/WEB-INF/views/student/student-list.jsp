@@ -63,7 +63,7 @@
                                 <td class="text-center"><spring:eval expression="student.dob" /></td>
                                 <td class="text-center">
                                     <a href="${contextPath}/student/update-student/${student.id}" class="btn btn-sm btn-primary"><i class="fas fa-pencil-alt"></i></a>
-                                    <a href="#" class="btn btn-sm btn-danger delete-student-link"><i class="fas fa-trash"></i></a>
+                                    <a href="#" class="btn btn-sm btn-danger delete-student-link" data-id="${student.id}"><i class="fas fa-trash"></i></a>
                                 </td>
                             </tr>
                         </c:forEach>

@@ -32,9 +32,11 @@
             </form>
         </div>
     </nav>
-    <div class="alert alert-danger ml-auto position-absolute message" role="alert">
-        ${result.message}
-    </div>
+    <c:if test="${not empty result}">
+        <div class="alert alert-danger ml-auto position-absolute message" role="alert">
+            ${result.message}
+        </div>
+    </c:if>
     <div class="container save-student">
         <h1 class="text-center mb-4">${action} Student</h1>
         <form:form action="${contextPath}/student/save-student" method="post" modelAttribute="student" id="save-student">
@@ -72,7 +74,7 @@
             <div class="form-group row">
                 <div class="col-sm-12 text-right">
                     <button type="button" class="btn btn-secondary" id="back">Back</button>
-                    <button type="submit" class="btn btn-dark">${action}</button>
+                    <button type="submit" class="btn btn-primary">${action}</button>
                 </div>
             </div>
         </form:form>
