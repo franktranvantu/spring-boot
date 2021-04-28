@@ -1,5 +1,6 @@
 package com.franktran.jsp.enrolment;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -72,6 +73,10 @@ public class EnrolmentService {
     if (!existsById) {
       throw new IllegalArgumentException(String.format("Enrolment with id %s not exists", id));
     }
-    enrolmentRepository.deleteById(id);
+    try {
+      enrolmentRepository.deleteById(id);
+    } catch (DataIntegrityViolationException e) {
+      throw new IllegalStateException(String.format("Enrolment with id %d is being used by others!", id));
+    }
   }
 }

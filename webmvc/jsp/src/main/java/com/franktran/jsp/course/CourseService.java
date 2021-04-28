@@ -1,5 +1,6 @@
 package com.franktran.jsp.course;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -32,7 +33,7 @@ public class CourseService {
     if (Objects.nonNull(course.getName()) && !Objects.equals(existCourse.getName(), course.getName())) {
       Optional<Course> courseByName = courseRepository.findCourseByName(course.getName());
       if (courseByName.isPresent()) {
-        throw new IllegalArgumentException("Course taken");
+        throw new IllegalArgumentException("Course already exists");
       }
       existCourse.setName(course.getName());
     }
@@ -40,10 +41,14 @@ public class CourseService {
   }
 
   public void deleteCourse(long id) {
-    boolean existsById = courseRepository.existsById(id);
-    if (!existsById) {
+    Optional<Course> course = courseRepository.findById(id);
+    if (!course.isPresent()) {
       throw new IllegalArgumentException(String.format("Course with id %s not exists", id));
     }
-    courseRepository.deleteById(id);
+    try {
+      courseRepository.deleteById(id);
+    } catch (DataIntegrityViolationException e) {
+      throw new IllegalStateException(String.format("Course %s is being used by others!", course.get().getName()));
+    }
   }
 }

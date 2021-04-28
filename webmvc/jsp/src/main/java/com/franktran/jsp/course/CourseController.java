@@ -1,9 +1,17 @@
 package com.franktran.jsp.course;
 
+import com.franktran.jsp.dto.ResultDto;
+import com.franktran.jsp.dto.ResultStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Objects;
 
@@ -31,18 +39,32 @@ public class CourseController {
     }
 
     @PostMapping("/save-course")
-    public String saveCourse(@ModelAttribute("course") Course course, Model model) {
+    public String saveCourse(@ModelAttribute("course") @Valid Course course, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("action", Objects.isNull(course.getId()) ? "Create" : "Update");
+            return "course/save-course";
+        }
+        ResultDto result = new ResultDto();
         try {
             if (Objects.isNull(course.getId())) {
                 model.addAttribute("action", "Create");
                 courseService.createCourse(course);
+                result.setMessage("Created course successful!");
+                model.addAttribute("result", result);
             } else {
                 model.addAttribute("action", "Update");
                 courseService.updateCourse(course.getId(), course);
+                result.setMessage("Updated course successful!");
+                model.addAttribute("result", result);
             }
-            return "redirect:/course";
+            result.setStatus(ResultStatus.SUCCESS);
+            model.addAttribute("result", result);
+            model.addAttribute("courses", courseService.getAllCourses());
+            return "course/course-list";
         } catch (Exception e) {
-            model.addAttribute("nameError", e.getMessage());
+            result.setStatus(ResultStatus.FAIL);
+            result.setMessage(e.getMessage());
+            model.addAttribute("result", result);
             return "course/save-course";
         }
     }
@@ -56,8 +78,20 @@ public class CourseController {
     }
 
     @GetMapping("/delete-course/{id}")
-    public String deleteCourse(@PathVariable int id) {
-        courseService.deleteCourse(id);
-        return "redirect:/course";
+    public String deleteCourse(@PathVariable int id, Model model) {
+        ResultDto result = new ResultDto();
+        try {
+            courseService.deleteCourse(id);
+            result.setStatus(ResultStatus.SUCCESS);
+            result.setMessage("Deleted course successful!");
+            model.addAttribute("result", result);
+        } catch (Exception e) {
+            result.setStatus(ResultStatus.FAIL);
+            result.setMessage(e.getMessage());
+            model.addAttribute("result", result);
+        }
+        List<Course> courses = courseService.getAllCourses();
+        model.addAttribute("courses", courses);
+        return "course/course-list";
     }
 }

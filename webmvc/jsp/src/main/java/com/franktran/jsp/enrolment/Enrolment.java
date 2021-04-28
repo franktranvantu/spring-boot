@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Getter
@@ -32,6 +33,7 @@ public class Enrolment {
       joinColumns = {@JoinColumn(name = "enrolment_id")},
       inverseJoinColumns = {@JoinColumn(name = "student_id")}
   )
+  @NotBlank(message = "Student is mandatory")
   private Student student;
 
   @OneToOne
@@ -40,8 +42,10 @@ public class Enrolment {
       joinColumns = {@JoinColumn(name = "enrolment_id")},
       inverseJoinColumns = {@JoinColumn(name = "course_id")}
   )
+  @NotBlank(message = "Course is mandatory")
   private Course course;
 
+  @NotBlank(message = "Semester is mandatory")
   private String semester;
 
   public Enrolment(Course course, Student student, String semester) {
