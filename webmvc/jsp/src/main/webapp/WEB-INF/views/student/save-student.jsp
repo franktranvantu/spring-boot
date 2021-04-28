@@ -42,10 +42,10 @@
             <div class="form-group row">
                 <label for="name" class="col-sm-2 col-form-label">Name</label>
                 <div class="col-sm-10">
-                    <form:input path="name" class="form-control" id="name" required="required" />
+                    <form:input path="name" class="form-control is-invalid" aria-describedby="name" required="required" />
                 </div>
-                <div class="invalid-feedback">
-                    Name is require
+                <div id="name" class="invalid-feedback">
+                    Name is mandatory
                 </div>
                 <div class="invalid-feedback">
                     <form:errors path="name" />
