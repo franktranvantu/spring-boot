@@ -7,14 +7,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Getter
@@ -33,7 +28,7 @@ public class Enrolment {
       joinColumns = {@JoinColumn(name = "enrolment_id")},
       inverseJoinColumns = {@JoinColumn(name = "student_id")}
   )
-  @NotBlank(message = "Student is mandatory")
+  @NotNull(message = "Student is mandatory")
   private Student student;
 
   @OneToOne
@@ -42,7 +37,7 @@ public class Enrolment {
       joinColumns = {@JoinColumn(name = "enrolment_id")},
       inverseJoinColumns = {@JoinColumn(name = "course_id")}
   )
-  @NotBlank(message = "Course is mandatory")
+  @NotNull(message = "Course is mandatory")
   private Course course;
 
   @NotBlank(message = "Semester is mandatory")

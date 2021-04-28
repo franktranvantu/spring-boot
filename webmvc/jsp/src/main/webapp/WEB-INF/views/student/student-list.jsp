@@ -63,7 +63,7 @@
                                 <td class="text-center"><spring:eval expression="student.dob" /></td>
                                 <td class="text-center">
                                     <a href="${contextPath}/student/update-student/${student.id}" class="btn btn-sm btn-primary"><i class="fas fa-pencil-alt"></i></a>
-                                    <a href="#" class="btn btn-sm btn-danger delete-student-link" data-id="${student.id}"><i class="fas fa-trash"></i></a>
+                                    <a href="" class="btn btn-sm btn-danger delete-student-button" data-id="${student.id}"><i class="fas fa-trash"></i></a>
                                 </td>
                             </tr>
                         </c:forEach>
@@ -71,8 +71,6 @@
                 </table>
             </div>
         </div>
-
-        <input type="hidden" id="student-id-to-delete" />
 
         <!-- Delete Student Modal -->
         <div class="modal fade" id="delete-student-modal" tabindex="-1" role="dialog" aria-hidden="true">
@@ -89,7 +87,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-danger" id="delete-student-btn">Delete</button>
+                        <button type="button" class="btn btn-danger" id="confirm-delete-student">Delete</button>
                     </div>
                 </div>
             </div>

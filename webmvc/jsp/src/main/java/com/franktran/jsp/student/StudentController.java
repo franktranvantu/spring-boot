@@ -75,8 +75,8 @@ public class StudentController {
     return "student/save-student";
   }
 
-  @GetMapping("/delete-student/{id}")
-  public String deleteStudent(@PathVariable int id, Model model) {
+  @PostMapping("/delete-student")
+  public String deleteStudent(@RequestParam int id, Model model) {
     ResultDto result = new ResultDto();
     try {
       studentService.deleteStudent(id);
