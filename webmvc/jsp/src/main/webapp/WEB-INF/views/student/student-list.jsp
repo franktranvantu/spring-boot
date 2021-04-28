@@ -6,6 +6,7 @@
 <head>
     <title>Student Management</title>
     <link rel="stylesheet" href="${contextPath}/webjars/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${contextPath}/webjars/font-awesome/css/all.css">
     <link rel="stylesheet" href="${contextPath}/common.css">
     <link rel="stylesheet" href="${contextPath}/student/student.css">
 </head>
@@ -37,37 +38,39 @@
         </div>
     </c:if>
     <div class="container">
-        <h1 class="text-center display-1">Student Management</h1>
-        <form action="${contextPath}/student/create-student">
-            <div class="form-group row">
-                <div class="col-sm-12 text-center">
-                    <button class="btn btn-dark">Create Student</button>
-                </div>
+        <div class="card">
+            <div class="card-header bg-transparent d-flex justify-content-between align-items-center">
+                <h4 class="card-title mb-0">All Students List</h4>
+                <a href="${contextPath}/student/create-student" class="btn btn-primary"><i class="fas fa-user-plus"></i> Add new</a>
             </div>
-        </form>
-        <table class="table">
-            <thead class="thead-dark">
-                <tr class="text-center">
-                    <th>Id</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Birthday</th>
-                    <th colspan="2">Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <c:forEach var="student" items="${students}">
-                    <tr>
-                        <td class="text-center">${student.id}</td>
-                        <td>${student.name}</td>
-                        <td>${student.email}</td>
-                        <td class="text-center"><spring:eval expression="student.dob" /></td>
-                        <td class="text-center"><a href="${contextPath}/student/update-student/${student.id}">Update</a></td>
-                        <td class="text-center"><a href="#" class="delete-student-link" data-id="${student.id}">Delete</a></td>
-                    </tr>
-                </c:forEach>
-            </tbody>
-        </table>
+            <div class="card-body">
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr class="text-center">
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Birthday</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <c:forEach var="student" items="${students}">
+                            <tr>
+                                <td class="text-center">${student.id}</td>
+                                <td>${student.name}</td>
+                                <td>${student.email}</td>
+                                <td class="text-center"><spring:eval expression="student.dob" /></td>
+                                <td class="text-center">
+                                    <a href="${contextPath}/student/update-student/${student.id}" class="btn btn-sm btn-primary"><i class="fas fa-pencil-alt"></i></a>
+                                    <a href="#" class="btn btn-sm btn-danger delete-student-link"><i class="fas fa-trash"></i></a>
+                                </td>
+                            </tr>
+                        </c:forEach>
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
         <input type="hidden" id="student-id-to-delete" />
 

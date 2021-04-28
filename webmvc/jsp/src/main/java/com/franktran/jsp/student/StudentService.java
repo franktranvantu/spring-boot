@@ -59,7 +59,7 @@ public class StudentService {
     try {
       studentRepository.deleteById(studentId);
     } catch (DataIntegrityViolationException e) {
-      throw new IllegalStateException(String.format("Student %s is being referred by others!", student.get().getName()));
+      throw new IllegalStateException(String.format("Student %s is being used by others!", student.get().getName()));
     }
   }
 

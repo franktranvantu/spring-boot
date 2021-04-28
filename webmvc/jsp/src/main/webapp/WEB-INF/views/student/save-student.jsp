@@ -37,24 +37,30 @@
     </div>
     <div class="container save-student">
         <h1 class="text-center mb-4">${action} Student</h1>
-        <form:form action="${contextPath}/student/save-student" method="post" modelAttribute="student">
+        <form:form action="${contextPath}/student/save-student" method="post" modelAttribute="student" id="save-student">
             <form:hidden path="id" />
             <div class="form-group row">
                 <label for="name" class="col-sm-2 col-form-label">Name</label>
                 <div class="col-sm-10">
-                    <form:input path="name" class="form-control is-invalid" aria-describedby="name" required="required" />
-                </div>
-                <div id="name" class="invalid-feedback">
-                    Name is mandatory
-                </div>
-                <div class="invalid-feedback">
-                    <form:errors path="name" />
+                    <form:input path="name" class="form-control" id="name" aria-describedby="name" />
+                    <div id="name" class="invalid-feedback">
+                        Name is mandatory
+                    </div>
+                    <div id="name" class="invalid-feedback">
+                        <form:errors path="name" />
+                    </div>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="email" class="col-sm-2 col-form-label">Email</label>
                 <div class="col-sm-10">
-                    <form:input path="email" class="form-control" id="email" required="required" />
+                    <form:input path="email" class="form-control" id="email" aria-describedby="email" />
+                    <div id="email" class="invalid-feedback">
+                        Email is mandatory
+                    </div>
+                    <div id="email" class="invalid-feedback">
+                        <form:errors path="email" />
+                    </div>
                 </div>
             </div>
             <div class="form-group row">
@@ -72,6 +78,7 @@
         </form:form>
     </div>
 
+    <script src="${contextPath}/webjars/lodash/lodash.min.js"></script>
     <script src="${contextPath}/webjars/jquery/jquery.min.js"></script>
     <script src="${contextPath}/webjars/bootstrap/js/bootstrap.min.js"></script>
     <script src="${contextPath}/webjars/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
