@@ -1,6 +1,5 @@
 package com.franktran.jsp.enrolment;
 
-import com.franktran.jsp.course.Course;
 import com.franktran.jsp.course.CourseService;
 import com.franktran.jsp.dto.ResultDto;
 import com.franktran.jsp.dto.ResultStatus;
