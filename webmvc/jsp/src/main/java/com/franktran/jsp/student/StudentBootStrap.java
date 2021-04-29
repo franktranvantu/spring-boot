@@ -38,6 +38,51 @@ public class StudentBootStrap implements CommandLineRunner {
             faker.name().name(),
             "faker3@gmail.com",
             faker.date().birthday(10, 50).toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
+        ),
+        new Student(
+            faker.name().name(),
+            "faker4@gmail.com",
+            faker.date().birthday(10, 50).toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
+        ),
+        new Student(
+            faker.name().name(),
+            "faker5@gmail.com",
+            faker.date().birthday(10, 50).toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
+        ),
+        new Student(
+            faker.name().name(),
+            "faker6@gmail.com",
+            faker.date().birthday(10, 50).toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
+        ),
+        new Student(
+            faker.name().name(),
+            "faker7@gmail.com",
+            faker.date().birthday(10, 50).toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
+        ),
+        new Student(
+            faker.name().name(),
+            "faker8@gmail.com",
+            faker.date().birthday(10, 50).toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
+        ),
+        new Student(
+            faker.name().name(),
+            "faker9@gmail.com",
+            faker.date().birthday(10, 50).toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
+        ),
+        new Student(
+            faker.name().name(),
+            "faker10@gmail.com",
+            faker.date().birthday(10, 50).toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
+        ),
+        new Student(
+            faker.name().name(),
+            "faker11@gmail.com",
+            faker.date().birthday(10, 50).toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
+        ),
+        new Student(
+            faker.name().name(),
+            "faker12@gmail.com",
+            faker.date().birthday(10, 50).toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
         )
     ).collect(Collectors.toList());
 

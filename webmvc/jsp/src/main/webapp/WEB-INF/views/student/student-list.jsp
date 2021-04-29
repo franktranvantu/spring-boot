@@ -6,6 +6,7 @@
 <head>
     <title>Student Management</title>
     <link rel="stylesheet" href="${contextPath}/webjars/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${contextPath}/webjars/datatables/css/jquery.dataTables.css">
     <link rel="stylesheet" href="${contextPath}/webjars/font-awesome/css/all.css">
     <link rel="stylesheet" href="${contextPath}/common.css">
     <link rel="stylesheet" href="${contextPath}/student/student.css">
@@ -46,9 +47,9 @@
                 <a href="${contextPath}/student/create-student" class="btn btn-primary"><i class="fas fa-user-plus"></i> Add new</a>
             </div>
             <div class="card-body">
-                <table class="table">
-                    <thead class="thead-dark">
-                        <tr class="text-center">
+                <table id="student" class="table">
+                    <thead>
+                        <tr>
                             <th>Id</th>
                             <th>Name</th>
                             <th>Email</th>
@@ -98,6 +99,7 @@
 
     <script src="${contextPath}/webjars/jquery/jquery.min.js"></script>
     <script src="${contextPath}/webjars/bootstrap/js/bootstrap.min.js"></script>
+    <script src="${contextPath}/webjars/datatables/js/jquery.dataTables.min.js"></script>
     <script src="${contextPath}/common.js"></script>
     <script src="${contextPath}/student/student-list.js"></script>
 </body>

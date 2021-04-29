@@ -2,8 +2,6 @@ package com.franktran.jsp.student;
 
 import com.franktran.jsp.dto.ResultDto;
 import com.franktran.jsp.dto.ResultStatus;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,8 +22,11 @@ public class StudentController {
   }
 
   @GetMapping
-  public String index(Model model) {
-    List<Student> students = studentService.getAllStudents();
+  public String index(@RequestParam(defaultValue = "0") Integer pageNo,
+                      @RequestParam(defaultValue = "10") Integer pageSize,
+                      @RequestParam(defaultValue = "id") String sortBy,
+                      Model model) {
+    List<Student> students = studentService.getAllStudents(pageNo, pageSize, sortBy);
     model.addAttribute("students", students);
     return "student/student-list";
   }

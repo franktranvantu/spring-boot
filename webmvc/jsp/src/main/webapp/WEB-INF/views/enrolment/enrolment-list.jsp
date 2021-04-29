@@ -71,6 +71,7 @@
           </tbody>
         </table>
       </div>
+    </div>
 
     <!-- Delete Enrolment Modal -->
     <div class="modal fade" id="delete-enrolment-modal" tabindex="-1" role="dialog" aria-hidden="true">

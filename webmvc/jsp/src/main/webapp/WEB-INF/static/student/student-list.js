@@ -1,4 +1,8 @@
 $(function() {
+  $('#student').DataTable();
+
+  $('.dataTables_length').addClass('bs-select');
+
   $('.message').slideDown().delay(3000).slideUp();
 
   $('.delete-student-button').click(e => {
