@@ -67,7 +67,7 @@ public class StudentController {
   }
 
   @GetMapping("/update-student/{id}")
-  public String showUpdateStudent(@PathVariable int id, Model model) {
+  public String showUpdateStudent(@PathVariable long id, Model model) {
     Student student = studentService.getStudentById(id);
     model.addAttribute("action", "Update");
     model.addAttribute("student", student);
@@ -75,7 +75,7 @@ public class StudentController {
   }
 
   @PostMapping("/delete-student")
-  public String deleteStudent(@RequestParam int id, Model model) {
+  public String deleteStudent(@RequestParam long id, Model model) {
     ResultDto result = new ResultDto();
     try {
       studentService.deleteStudent(id);

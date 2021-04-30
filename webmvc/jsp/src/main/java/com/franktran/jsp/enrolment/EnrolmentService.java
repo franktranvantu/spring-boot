@@ -1,5 +1,9 @@
 package com.franktran.jsp.enrolment;
 
+import com.franktran.jsp.course.Course;
+import com.franktran.jsp.course.CourseService;
+import com.franktran.jsp.student.Student;
+import com.franktran.jsp.student.StudentService;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
@@ -11,9 +15,15 @@ import java.util.Optional;
 public class EnrolmentService {
 
   private final EnrolmentRepository enrolmentRepository;
+  private final StudentService studentService;
+  private final CourseService courseService;
 
-  public EnrolmentService(EnrolmentRepository enrolmentRepository) {
+  public EnrolmentService(EnrolmentRepository enrolmentRepository,
+                          StudentService studentService,
+                          CourseService courseService) {
     this.enrolmentRepository = enrolmentRepository;
+    this.studentService = studentService;
+    this.courseService = courseService;
   }
 
   public List<Enrolment> getAllEnrolments() {
@@ -45,7 +55,8 @@ public class EnrolmentService {
         throw new IllegalArgumentException(String.format("Student %s taken course %s for semester %s",
             enrolment.getCourse().getName(), enrolment.getStudent().getName(), enrolment.getSemester()));
       }
-      existEnrolment.getCourse().setId(enrolment.getCourse().getId());
+      Course course = courseService.getCourseById(enrolment.getCourse().getId());
+      existEnrolment.setCourse(course);
     }
     // Update student
     if (Objects.nonNull(enrolment.getStudent().getId())
@@ -54,7 +65,8 @@ public class EnrolmentService {
         throw new IllegalArgumentException(String.format("Student %s taken course %s for semester %s",
             enrolment.getCourse().getName(), enrolment.getStudent().getName(), enrolment.getSemester()));
       }
-      existEnrolment.getStudent().setId(enrolment.getStudent().getId());
+      Student student = studentService.getStudentById(enrolment.getStudent().getId());
+      existEnrolment.setStudent(student);
     }
     // Update semester
     if (Objects.nonNull(enrolment.getSemester())

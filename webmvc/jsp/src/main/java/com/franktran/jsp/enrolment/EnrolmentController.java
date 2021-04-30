@@ -85,7 +85,7 @@ public class EnrolmentController {
     }
 
     @PostMapping("/delete-enrolment")
-    public String deleteEnrolment(@RequestParam int id, Model model) {
+    public String deleteEnrolment(@RequestParam long id, Model model) {
         ResultDto result = new ResultDto();
         try {
             enrolmentService.deleteEnrolmentById(id);

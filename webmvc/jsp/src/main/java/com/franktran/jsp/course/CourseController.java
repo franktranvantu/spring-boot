@@ -64,7 +64,7 @@ public class CourseController {
     }
 
     @GetMapping("/update-course/{id}")
-    public String showUpdateCourse(@PathVariable int id, Model model) {
+    public String showUpdateCourse(@PathVariable long id, Model model) {
         Course course = courseService.getCourseById(id);
         model.addAttribute("action", "Update");
         model.addAttribute("course", course);
@@ -72,7 +72,7 @@ public class CourseController {
     }
 
     @PostMapping("/delete-course")
-    public String deleteCourse(@RequestParam int id, Model model) {
+    public String deleteCourse(@RequestParam long id, Model model) {
         ResultDto result = new ResultDto();
         try {
             courseService.deleteCourse(id);
