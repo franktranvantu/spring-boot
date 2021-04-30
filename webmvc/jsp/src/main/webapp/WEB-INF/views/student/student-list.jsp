@@ -49,7 +49,7 @@
             </div>
             <div class="card-body">
                 <table id="student" class="table">
-                    <thead>
+                    <thead class="thead-dark">
                         <tr>
                             <th>Id</th>
                             <th>Name</th>

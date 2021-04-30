@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -44,7 +45,10 @@ public class EnrolmentController {
     }
 
     @PostMapping("/save-enrolment")
-    public String saveEnrolment(@ModelAttribute("enrolment") @Valid Enrolment enrolment, BindingResult bindingResult, Model model) {
+    public String saveEnrolment(@ModelAttribute("enrolment") @Valid Enrolment enrolment,
+                                BindingResult bindingResult,
+                                RedirectAttributes ra,
+                                Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("action", Objects.isNull(enrolment.getId()) ? "Create" : "Update");
             return "enrolment/save-enrolment";
@@ -55,32 +59,31 @@ public class EnrolmentController {
                 model.addAttribute("action", "Create");
                 enrolmentService.createEnrolment(enrolment);
                 result.setMessage("Created enrolment successful!");
-                model.addAttribute("result", result);
             } else {
                 model.addAttribute("action", "Update");
                 enrolmentService.updateEnrolment(enrolment.getId(), enrolment);
                 result.setMessage("Updated enrolment successful!");
-                model.addAttribute("result", result);
             }
             result.setStatus(ResultStatus.SUCCESS);
-            model.addAttribute("result", result);
+            ra.addFlashAttribute("result", result);
             model.addAttribute("enrolments", enrolmentService.getAllEnrolments());
-            return "enrolment/enrolment-list";
+            return "redirect:/";
         } catch (Exception e) {
             result.setStatus(ResultStatus.FAIL);
             result.setMessage(e.getMessage());
             model.addAttribute("result", result);
+            model.addAttribute("courses", courseService.getAllCourses());
+            model.addAttribute("students", studentService.getAllStudents());
             if (Objects.isNull(enrolment.getId())) {
-                model.addAttribute("courses", courseService.getAllCourses());
-                model.addAttribute("students", studentService.getAllStudents());
                 return "enrolment/save-enrolment";
             }
-            return showUpdateEnrolment(enrolment.getId(), model);
+            model.addAttribute("enrolment", enrolment);
+            return "enrolment/save-enrolment";
         }
     }
 
-    @GetMapping("/update-enrolment/{id}")
-    public String showUpdateEnrolment(@PathVariable long id, Model model) {
+    @PostMapping("/update-enrolment")
+    public String showUpdateEnrolment(@RequestParam long id, Model model) {
         Enrolment enrolment = enrolmentService.getEnrolmentById(id);
         model.addAttribute("action", "Update");
         model.addAttribute("enrolment", enrolment);

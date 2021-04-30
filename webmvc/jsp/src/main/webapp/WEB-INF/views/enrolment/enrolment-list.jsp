@@ -64,8 +64,11 @@
               <td>${enrolment.student.name}</td>
               <td>${enrolment.semester}</td>
               <td class="text-center">
-                <a href="${contextPath}/update-enrolment/${enrolment.id}" class="btn btn-sm btn-primary"><i class="fas fa-pencil-alt"></i></a>
-                <a href="" class="btn btn-sm btn-danger delete-enrolment-button" data-id="${enrolment.id}"><i class="fas fa-trash"></i></a>
+                <form action="${contextPath}/update-enrolment" method="post">
+                  <input type="hidden" name="id" value="${enrolment.id}" />
+                  <button class="btn btn-sm btn-primary"><i class="fas fa-pencil-alt"></i></button>
+                  <a href="" class="btn btn-sm btn-danger delete-enrolment-button" data-id="${enrolment.id}"><i class="fas fa-trash"></i></a>
+                </form>
               </td>
             </tr>
           </c:forEach>

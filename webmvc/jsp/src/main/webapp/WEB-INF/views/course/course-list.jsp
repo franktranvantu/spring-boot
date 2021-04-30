@@ -35,7 +35,7 @@
 
     <c:if test="${not empty result}">
         <div class="alert alert-${result.status == 'SUCCESS' ? 'success' : 'danger'} ml-auto position-absolute message" role="alert">
-                ${result.message}
+            ${result.message}
         </div>
     </c:if>
 
@@ -48,11 +48,11 @@
             <div class="card-body">
                 <table id="course" class="table">
                     <thead class="thead-dark">
-                    <tr class="text-center">
-                        <th>Id</th>
-                        <th>Name</th>
-                        <th>Actions</th>
-                    </tr>
+                        <tr class="text-center">
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th>Actions</th>
+                        </tr>
                     </thead>
                     <tbody>
                     <c:forEach var="course" items="${courses}">
@@ -60,8 +60,11 @@
                             <td class="text-center">${course.id}</td>
                             <td>${course.name}</td>
                             <td class="text-center">
-                                <a href="${contextPath}/course/update-course/${course.id}" class="btn btn-sm btn-primary"><i class="fas fa-pencil-alt"></i></a>
-                                <a href="" class="btn btn-sm btn-danger delete-course-button" data-id="${course.id}"><i class="fas fa-trash"></i></a>
+                                <form action="${contextPath}/course/update-course" method="post">
+                                    <input type="hidden" name="id" value="${course.id}" />
+                                    <button class="btn btn-sm btn-primary"><i class="fas fa-pencil-alt"></i></button>
+                                    <a href="" class="btn btn-sm btn-danger delete-student-button" data-id="${course.id}"><i class="fas fa-trash"></i></a>
+                                </form>
                             </td>
                         </tr>
                     </c:forEach>

@@ -3,12 +3,15 @@ $(function() {
 
   $('.message').slideDown().delay(3000).slideUp();
 
-  $('.delete-enrolment-button').click(e => {
-    e.preventDefault();
-    const id = $(e.target).closest('a').data('id');
-    const modal = $('#delete-enrolment-modal');
-    modal.data('id', id);
-    modal.modal('show');
+  $('.table tbody').click(e => {
+    const target = $(e.target);
+    if (target.hasClass('delete-enrolment-button') || target.hasClass('fa-trash')) {
+      e.preventDefault();
+      const id = target.closest('a').data('id');
+      const modal = $('#delete-enrolment-modal');
+      modal.data('id', id);
+      modal.modal('show');
+    }
   });
 
   $('#confirm-delete-enrolment').click(() => {

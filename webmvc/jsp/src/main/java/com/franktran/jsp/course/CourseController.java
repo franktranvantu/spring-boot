@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -35,7 +36,10 @@ public class CourseController {
     }
 
     @PostMapping("/save-course")
-    public String saveCourse(@ModelAttribute("course") @Valid Course course, BindingResult bindingResult, Model model) {
+    public String saveCourse(@ModelAttribute("course") @Valid Course course,
+                             BindingResult bindingResult,
+                             RedirectAttributes ra,
+                             Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("action", Objects.isNull(course.getId()) ? "Create" : "Update");
             return "course/save-course";
@@ -52,9 +56,8 @@ public class CourseController {
                 result.setMessage("Updated course successful!");
             }
             result.setStatus(ResultStatus.SUCCESS);
-            model.addAttribute("result", result);
-            model.addAttribute("courses", courseService.getAllCourses());
-            return "course/course-list";
+            ra.addFlashAttribute("result", result);
+            return "redirect:/course";
         } catch (Exception e) {
             result.setStatus(ResultStatus.FAIL);
             result.setMessage(e.getMessage());
@@ -63,8 +66,8 @@ public class CourseController {
         }
     }
 
-    @GetMapping("/update-course/{id}")
-    public String showUpdateCourse(@PathVariable long id, Model model) {
+    @PostMapping("/update-course")
+    public String showUpdateCourse(@RequestParam long id, Model model) {
         Course course = courseService.getCourseById(id);
         model.addAttribute("action", "Update");
         model.addAttribute("course", course);
@@ -72,19 +75,22 @@ public class CourseController {
     }
 
     @PostMapping("/delete-course")
-    public String deleteCourse(@RequestParam long id, Model model) {
+    public String deleteCourse(@RequestParam long id,
+                               RedirectAttributes ra,
+                               Model model) {
         ResultDto result = new ResultDto();
         try {
             courseService.deleteCourse(id);
             result.setStatus(ResultStatus.SUCCESS);
             result.setMessage("Deleted course successful!");
+            ra.addFlashAttribute("result", result);
+            return "redirect:/student";
         } catch (Exception e) {
             result.setStatus(ResultStatus.FAIL);
             result.setMessage(e.getMessage());
-        }
-        List<Course> courses = courseService.getAllCourses();
             model.addAttribute("result", result);
-        model.addAttribute("courses", courses);
-        return "course/course-list";
+            model.addAttribute("courses", courseService.getAllCourses());
+            return "course/course-list";
+        }
     }
 }

@@ -75,7 +75,9 @@ public class StudentController {
   }
 
   @PostMapping("/delete-student")
-  public String deleteStudent(@RequestParam long id, RedirectAttributes ra, Model model) {
+  public String deleteStudent(@RequestParam long id,
+                              RedirectAttributes ra,
+                              Model model) {
     ResultDto result = new ResultDto();
     try {
       studentService.deleteStudent(id);

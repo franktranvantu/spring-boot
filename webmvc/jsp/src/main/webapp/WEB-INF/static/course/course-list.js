@@ -3,12 +3,15 @@ $(function() {
 
   $('.message').slideDown().delay(3000).slideUp();
 
-  $('.delete-course-button').click(e => {
-    e.preventDefault();
-    const id = $(e.target).closest('a').data('id');
-    const modal = $('#delete-course-modal');
-    modal.data('id', id);
-    modal.modal('show');
+  $('.table tbody').click(e => {
+    const target = $(e.target);
+    if (target.hasClass('delete-course-button') || target.hasClass('fa-trash')) {
+      e.preventDefault();
+      const id = target.closest('a').data('id');
+      const modal = $('#delete-course-modal');
+      modal.data('id', id);
+      modal.modal('show');
+    }
   });
 
   $('#confirm-delete-course').click(() => {
