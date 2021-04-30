@@ -26,11 +26,10 @@ public class EnrolmentBootStrap implements CommandLineRunner {
 
   @Override
   public void run(String... args) throws Exception {
-    List<Enrolment> enrolments = Stream.of(
-        new Enrolment(courseService.getCourseById(1), studentService.getStudentById(1), "2021A"),
-        new Enrolment(courseService.getCourseById(2), studentService.getStudentById(2), "2021A"),
-        new Enrolment(courseService.getCourseById(3), studentService.getStudentById(3), "2021A")
-    ).collect(Collectors.toList());
+    List<Enrolment> enrolments = Stream.iterate(1, i -> i + 1)
+        .map(i -> new Enrolment(courseService.getCourseById(i), studentService.getStudentById(i), "2021A"))
+        .limit(50)
+        .collect(Collectors.toList());
 
     enrolmentRepository.saveAll(enrolments);
   }

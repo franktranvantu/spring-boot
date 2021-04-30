@@ -1,13 +1,8 @@
 package com.franktran.jsp.student;
 
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -23,15 +18,6 @@ public class StudentService {
 
   public List<Student> getAllStudents() {
     return studentRepository.findAll();
-  }
-
-  public List<Student> getAllStudents(Integer pageNo, Integer pageSize, String sortBy) {
-    Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
-    Page<Student> studentPage = studentRepository.findAll(paging);
-    if (studentPage.hasContent()) {
-      return studentPage.getContent();
-    }
-    return Collections.emptyList();
   }
 
   public Student getStudentById(long id) {

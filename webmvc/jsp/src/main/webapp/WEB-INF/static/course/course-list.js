@@ -1,4 +1,6 @@
 $(function() {
+  $('#course').DataTable();
+
   $('.message').slideDown().delay(3000).slideUp();
 
   $('.delete-course-button').click(e => {

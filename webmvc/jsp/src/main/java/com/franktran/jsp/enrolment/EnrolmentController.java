@@ -70,6 +70,11 @@ public class EnrolmentController {
             result.setStatus(ResultStatus.FAIL);
             result.setMessage(e.getMessage());
             model.addAttribute("result", result);
+            if (Objects.isNull(enrolment.getId())) {
+                model.addAttribute("courses", courseService.getAllCourses());
+                model.addAttribute("students", studentService.getAllStudents());
+                return "enrolment/save-enrolment";
+            }
             return showUpdateEnrolment(enrolment.getId(), model);
         }
     }

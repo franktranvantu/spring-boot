@@ -23,68 +23,14 @@ public class StudentBootStrap implements CommandLineRunner {
   @Override
   public void run(String... args) throws Exception {
     Faker faker = new Faker();
-    List<Student> students = Stream.of(
-        new Student(
-            faker.name().name(),
-            "faker1@gmail.com",
-            faker.date().birthday(10, 50).toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
-        ),
-        new Student(
-            faker.name().name(),
-            "faker2@gmail.com",
-            faker.date().birthday(10, 50).toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
-        ),
-        new Student(
-            faker.name().name(),
-            "faker3@gmail.com",
-            faker.date().birthday(10, 50).toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
-        ),
-        new Student(
-            faker.name().name(),
-            "faker4@gmail.com",
-            faker.date().birthday(10, 50).toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
-        ),
-        new Student(
-            faker.name().name(),
-            "faker5@gmail.com",
-            faker.date().birthday(10, 50).toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
-        ),
-        new Student(
-            faker.name().name(),
-            "faker6@gmail.com",
-            faker.date().birthday(10, 50).toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
-        ),
-        new Student(
-            faker.name().name(),
-            "faker7@gmail.com",
-            faker.date().birthday(10, 50).toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
-        ),
-        new Student(
-            faker.name().name(),
-            "faker8@gmail.com",
-            faker.date().birthday(10, 50).toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
-        ),
-        new Student(
-            faker.name().name(),
-            "faker9@gmail.com",
-            faker.date().birthday(10, 50).toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
-        ),
-        new Student(
-            faker.name().name(),
-            "faker10@gmail.com",
-            faker.date().birthday(10, 50).toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
-        ),
-        new Student(
-            faker.name().name(),
-            "faker11@gmail.com",
-            faker.date().birthday(10, 50).toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
-        ),
-        new Student(
-            faker.name().name(),
-            "faker12@gmail.com",
-            faker.date().birthday(10, 50).toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
-        )
-    ).collect(Collectors.toList());
+    List<Student> students = Stream.iterate(1, i -> i + 1)
+        .map(i -> new Student(
+          faker.name().name(),
+          String.format("faker%d@gmail.com", i),
+          faker.date().birthday(10, 50).toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
+        ))
+        .limit(50)
+        .collect(Collectors.toList());
 
     studentRepository.saveAll(students);
   }

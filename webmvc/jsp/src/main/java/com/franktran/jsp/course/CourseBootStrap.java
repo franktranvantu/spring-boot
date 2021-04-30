@@ -22,11 +22,10 @@ public class CourseBootStrap implements CommandLineRunner {
   @Override
   public void run(String... args) throws Exception {
     Faker faker = new Faker();
-    List<Course> courses = Stream.of(
-        new Course(faker.book().title()),
-        new Course(faker.book().title()),
-        new Course(faker.book().title())
-    ).collect(Collectors.toList());
+    List<Course> courses = Stream.iterate(1, i -> i + 1)
+        .map(i -> new Course(faker.book().title()))
+        .limit(50)
+        .collect(Collectors.toList());
 
     courseRepository.saveAll(courses);
   }

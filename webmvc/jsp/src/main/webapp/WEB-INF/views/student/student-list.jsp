@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <html>
@@ -65,8 +66,11 @@
                                 <td>${student.email}</td>
                                 <td class="text-center"><spring:eval expression="student.dob" /></td>
                                 <td class="text-center">
-                                    <a href="${contextPath}/student/update-student/${student.id}" class="btn btn-sm btn-primary"><i class="fas fa-pencil-alt"></i></a>
-                                    <a href="" class="btn btn-sm btn-danger delete-student-button" data-id="${student.id}"><i class="fas fa-trash"></i></a>
+                                    <form action="${contextPath}/student/update-student" method="post">
+                                        <input type="hidden" name="id" value="${student.id}" />
+                                        <button class="btn btn-sm btn-primary"><i class="fas fa-pencil-alt"></i></button>
+                                        <a href="" class="btn btn-sm btn-danger delete-student-button" data-id="${student.id}"><i class="fas fa-trash"></i></a>
+                                    </form>
                                 </td>
                             </tr>
                         </c:forEach>

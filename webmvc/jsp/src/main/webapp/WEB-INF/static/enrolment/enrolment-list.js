@@ -1,4 +1,6 @@
 $(function() {
+  $('#enrolment').DataTable();
+
   $('.message').slideDown().delay(3000).slideUp();
 
   $('.delete-enrolment-button').click(e => {

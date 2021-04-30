@@ -5,6 +5,7 @@
 <head>
   <title>Enrolment Management</title>
   <link rel="stylesheet" href="${contextPath}/webjars/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="${contextPath}/webjars/datatables/css/jquery.dataTables.css">
   <link rel="stylesheet" href="${contextPath}/webjars/font-awesome/css/all.css">
   <link rel="stylesheet" href="${contextPath}/common.css">
   <link rel="stylesheet" href="${contextPath}/enrolment/enrolment.css">
@@ -45,7 +46,7 @@
         <a href="${contextPath}/create-enrolment" class="btn btn-primary"><i class="fas fa-user-plus"></i> Add new</a>
       </div>
       <div class="card-body">
-        <table class="table">
+        <table id="enrolment" class="table">
           <thead class="thead-dark">
           <tr class="text-center">
             <th>Id</th>
@@ -97,6 +98,7 @@
 
   <script src="${contextPath}/webjars/jquery/jquery.min.js"></script>
   <script src="${contextPath}/webjars/bootstrap/js/bootstrap.min.js"></script>
+  <script src="${contextPath}/webjars/datatables/js/jquery.dataTables.min.js"></script>
   <script src="${contextPath}/common.js"></script>
   <script src="${contextPath}/enrolment/enrolment-list.js"></script>
 </body>

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -22,11 +23,8 @@ public class StudentController {
   }
 
   @GetMapping
-  public String index(@RequestParam(defaultValue = "0") Integer pageNo,
-                      @RequestParam(defaultValue = "10") Integer pageSize,
-                      @RequestParam(defaultValue = "id") String sortBy,
-                      Model model) {
-    List<Student> students = studentService.getAllStudents(pageNo, pageSize, sortBy);
+  public String index(Model model) {
+    List<Student> students = studentService.getAllStudents();
     model.addAttribute("students", students);
     return "student/student-list";
   }
@@ -38,7 +36,10 @@ public class StudentController {
   }
 
   @PostMapping("/save-student")
-  public String saveStudent(@ModelAttribute("student") @Valid Student student, BindingResult bindingResult, Model model) {
+  public String saveStudent(@ModelAttribute("student") @Valid Student student,
+                            BindingResult bindingResult,
+                            RedirectAttributes ra,
+                            Model model) {
     if (bindingResult.hasErrors()) {
       model.addAttribute("action", Objects.isNull(student.getId()) ? "Create" : "Update");
       return "student/save-student";
@@ -55,9 +56,8 @@ public class StudentController {
         result.setMessage("Updated student successful!");
       }
       result.setStatus(ResultStatus.SUCCESS);
-      model.addAttribute("result", result);
-      model.addAttribute("students", studentService.getAllStudents());
-      return "student/student-list";
+      ra.addFlashAttribute("result", result);
+      return "redirect:/student";
     } catch (Exception e) {
       result.setStatus(ResultStatus.FAIL);
       result.setMessage(e.getMessage());
@@ -66,8 +66,8 @@ public class StudentController {
     }
   }
 
-  @GetMapping("/update-student/{id}")
-  public String showUpdateStudent(@PathVariable long id, Model model) {
+  @PostMapping("/update-student")
+  public String showUpdateStudent(@RequestParam long id, Model model) {
     Student student = studentService.getStudentById(id);
     model.addAttribute("action", "Update");
     model.addAttribute("student", student);
@@ -75,20 +75,21 @@ public class StudentController {
   }
 
   @PostMapping("/delete-student")
-  public String deleteStudent(@RequestParam long id, Model model) {
+  public String deleteStudent(@RequestParam long id, RedirectAttributes ra, Model model) {
     ResultDto result = new ResultDto();
     try {
       studentService.deleteStudent(id);
       result.setStatus(ResultStatus.SUCCESS);
       result.setMessage("Deleted student successful!");
+      ra.addFlashAttribute("result", result);
+      return "redirect:/student";
     } catch (Exception e) {
       result.setStatus(ResultStatus.FAIL);
       result.setMessage(e.getMessage());
+      model.addAttribute("result", result);
+      model.addAttribute("students", studentService.getAllStudents());
+      return "student/student-list";
     }
-    List<Student> students = studentService.getAllStudents();
-    model.addAttribute("result", result);
-    model.addAttribute("students", students);
-    return "student/student-list";
   }
 
 }
