@@ -2,20 +2,16 @@ package com.franktran.jsp.course;
 
 import com.franktran.jsp.enrolment.Enrolment;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Course {
@@ -25,8 +21,8 @@ public class Course {
   private Long id;
   @NotBlank(message = "Name is mandatory")
   private String name;
-  @OneToOne(mappedBy = "course")
-  private Enrolment enrolment;
+  @OneToMany(mappedBy = "course")
+  private Set<Enrolment> enrolments = new HashSet<>();
 
   public Course(String name) {
     this.name = name;

@@ -3,17 +3,15 @@ package com.franktran.jsp.enrolment;
 import com.franktran.jsp.course.Course;
 import com.franktran.jsp.student.Student;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Enrolment {
@@ -22,7 +20,7 @@ public class Enrolment {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @OneToOne
+  @ManyToOne
   @JoinTable(
       name = "enrolment_student",
       joinColumns = {@JoinColumn(name = "enrolment_id")},
@@ -31,7 +29,7 @@ public class Enrolment {
   @NotNull(message = "Student is mandatory")
   private Student student;
 
-  @OneToOne
+  @ManyToOne
   @JoinTable(
       name = "enrolment_course",
       joinColumns = {@JoinColumn(name = "enrolment_id")},

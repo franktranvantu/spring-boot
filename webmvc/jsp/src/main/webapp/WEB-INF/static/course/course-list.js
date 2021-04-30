@@ -1,5 +1,8 @@
 $(function() {
-  $('#course').DataTable();
+  $('#course').DataTable({
+    scrollY: 550,
+    scroller: true
+  });
 
   $('.message').slideDown().delay(3000).slideUp();
 
