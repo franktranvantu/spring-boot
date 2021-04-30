@@ -49,12 +49,10 @@ public class StudentController {
         model.addAttribute("action", "Create");
         studentService.createStudent(student);
         result.setMessage("Created student successful!");
-        model.addAttribute("result", result);
       } else {
         model.addAttribute("action", "Update");
         studentService.updateStudent(student.getId(), student);
         result.setMessage("Updated student successful!");
-        model.addAttribute("result", result);
       }
       result.setStatus(ResultStatus.SUCCESS);
       model.addAttribute("result", result);
@@ -83,13 +81,12 @@ public class StudentController {
       studentService.deleteStudent(id);
       result.setStatus(ResultStatus.SUCCESS);
       result.setMessage("Deleted student successful!");
-      model.addAttribute("result", result);
     } catch (Exception e) {
       result.setStatus(ResultStatus.FAIL);
       result.setMessage(e.getMessage());
-      model.addAttribute("result", result);
     }
     List<Student> students = studentService.getAllStudents();
+    model.addAttribute("result", result);
     model.addAttribute("students", students);
     return "student/student-list";
   }

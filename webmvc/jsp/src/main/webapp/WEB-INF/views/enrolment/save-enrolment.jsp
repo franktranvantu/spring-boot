@@ -31,6 +31,13 @@
             </form>
         </div>
     </nav>
+
+    <c:if test="${not empty result}">
+        <div class="alert alert-danger ml-auto position-absolute message" role="alert">
+            ${result.message}
+        </div>
+    </c:if>
+
     <div class="container save-enrolment">
         <h1 class="text-center mt-4 mb-4">${action} Enrolment</h1>
         <form:form action="${contextPath}/save-enrolment" method="post" modelAttribute="enrolment" id="save-enrolment">

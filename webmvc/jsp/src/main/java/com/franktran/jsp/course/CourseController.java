@@ -46,12 +46,10 @@ public class CourseController {
                 model.addAttribute("action", "Create");
                 courseService.createCourse(course);
                 result.setMessage("Created course successful!");
-                model.addAttribute("result", result);
             } else {
                 model.addAttribute("action", "Update");
                 courseService.updateCourse(course.getId(), course);
                 result.setMessage("Updated course successful!");
-                model.addAttribute("result", result);
             }
             result.setStatus(ResultStatus.SUCCESS);
             model.addAttribute("result", result);
@@ -80,13 +78,12 @@ public class CourseController {
             courseService.deleteCourse(id);
             result.setStatus(ResultStatus.SUCCESS);
             result.setMessage("Deleted course successful!");
-            model.addAttribute("result", result);
         } catch (Exception e) {
             result.setStatus(ResultStatus.FAIL);
             result.setMessage(e.getMessage());
-            model.addAttribute("result", result);
         }
         List<Course> courses = courseService.getAllCourses();
+            model.addAttribute("result", result);
         model.addAttribute("courses", courses);
         return "course/course-list";
     }

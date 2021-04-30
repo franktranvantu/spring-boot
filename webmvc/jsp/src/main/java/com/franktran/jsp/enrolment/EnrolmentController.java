@@ -70,12 +70,12 @@ public class EnrolmentController {
             result.setStatus(ResultStatus.FAIL);
             result.setMessage(e.getMessage());
             model.addAttribute("result", result);
-            return "enrolment/enrolment-course";
+            return showUpdateEnrolment(enrolment.getId(), model);
         }
     }
 
     @GetMapping("/update-enrolment/{id}")
-    public String showUpdateEnrolment(@PathVariable int id, Model model) {
+    public String showUpdateEnrolment(@PathVariable long id, Model model) {
         Enrolment enrolment = enrolmentService.getEnrolmentById(id);
         model.addAttribute("action", "Update");
         model.addAttribute("enrolment", enrolment);
