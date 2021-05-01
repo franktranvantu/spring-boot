@@ -63,8 +63,8 @@
         </form:form>
     </div>
 
-    <script src="${contextPath}/webjars/lodash/lodash.min.js"></script>
     <script src="${contextPath}/webjars/jquery/jquery.min.js"></script>
+    <script src="${contextPath}/webjars/lodash/lodash.min.js"></script>
     <script src="${contextPath}/webjars/bootstrap/js/bootstrap.min.js"></script>
     <script src="${contextPath}/common.js"></script>
     <script src="${contextPath}/course/save-course.js"></script>

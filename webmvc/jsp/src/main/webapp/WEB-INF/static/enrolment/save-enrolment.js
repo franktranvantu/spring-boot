@@ -1,6 +1,4 @@
 $(function() {
-  $('.message').slideDown().delay(3000).slideUp();
-
   $('#back').click(() => {
     window.location.href = '/enrolment-management';
   });

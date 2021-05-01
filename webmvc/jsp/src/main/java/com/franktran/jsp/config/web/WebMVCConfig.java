@@ -1,4 +1,4 @@
-package com.franktran.jsp.config;
+package com.franktran.jsp.config.web;
 
 import com.franktran.jsp.formatter.DateFormatter;
 import org.springframework.context.annotation.Configuration;

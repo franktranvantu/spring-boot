@@ -80,8 +80,8 @@
         </form:form>
     </div>
 
-    <script src="${contextPath}/webjars/lodash/lodash.min.js"></script>
     <script src="${contextPath}/webjars/jquery/jquery.min.js"></script>
+    <script src="${contextPath}/webjars/lodash/lodash.min.js"></script>
     <script src="${contextPath}/webjars/bootstrap/js/bootstrap.min.js"></script>
     <script src="${contextPath}/webjars/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
     <script src="${contextPath}/common.js"></script>

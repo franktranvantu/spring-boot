@@ -6,7 +6,6 @@ import com.franktran.jsp.student.Student;
 import com.franktran.jsp.student.StudentService;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Objects;
@@ -45,7 +44,6 @@ public class EnrolmentService {
     return enrolmentRepository.save(enrolment);
   }
 
-  @Transactional
   public Enrolment updateEnrolment(long id, Enrolment enrolment) {
     Enrolment existEnrolment = enrolmentRepository.findById(id).orElseThrow(() -> new IllegalArgumentException(String.format("Enrolment with id %s does not exist", id)));
     Optional<Enrolment> enrolmentByCourseIdAndStudentIdAndSemester = enrolmentRepository
