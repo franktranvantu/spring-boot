@@ -42,7 +42,9 @@
     <div class="card">
       <div class="card-header bg-transparent d-flex justify-content-between align-items-center">
         <h4 class="card-title mb-0">All Enrolments List</h4>
-        <a href="${contextPath}/create-enrolment" class="btn btn-primary"><i class="fas fa-user-plus"></i> Add new</a>
+        <c:if test="${isEditable}">
+          <a href="${contextPath}/create-enrolment" class="btn btn-primary"><i class="fas fa-user-plus"></i> Add new</a>
+        </c:if>
       </div>
       <div class="card-body">
         <table id="enrolment" class="table">
@@ -52,7 +54,9 @@
             <th>Course</th>
             <th>Student</th>
             <th>Semester</th>
-            <th>Actions</th>
+            <c:if test="${isEditable}">
+              <th>Actions</th>
+            </c:if>
           </tr>
           </thead>
           <tbody>
@@ -62,13 +66,15 @@
               <td>${enrolment.course.name}</td>
               <td>${enrolment.student.name}</td>
               <td>${enrolment.semester}</td>
-              <td class="text-center">
-                <form action="${contextPath}/update-enrolment" method="post">
-                  <input type="hidden" name="id" value="${enrolment.id}" />
-                  <button class="btn btn-sm btn-primary"><i class="fas fa-pencil-alt"></i></button>
-                  <a href="" class="btn btn-sm btn-danger delete-enrolment-button" data-id="${enrolment.id}"><i class="fas fa-trash"></i></a>
-                </form>
-              </td>
+              <c:if test="${isEditable}">
+                <td class="text-center">
+                  <form action="${contextPath}/update-enrolment" method="post">
+                    <input type="hidden" name="id" value="${enrolment.id}" />
+                    <button class="btn btn-sm btn-primary"><i class="fas fa-pencil-alt"></i></button>
+                    <a href="" class="btn btn-sm btn-danger delete-enrolment-button" data-id="${enrolment.id}"><i class="fas fa-trash"></i></a>
+                  </form>
+                </td>
+              </c:if>
             </tr>
           </c:forEach>
           </tbody>

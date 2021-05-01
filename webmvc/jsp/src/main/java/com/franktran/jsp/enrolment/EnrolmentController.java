@@ -1,9 +1,13 @@
 package com.franktran.jsp.enrolment;
 
+import com.franktran.jsp.config.security.UserRole;
 import com.franktran.jsp.course.CourseService;
 import com.franktran.jsp.dto.ResultDto;
 import com.franktran.jsp.dto.ResultStatus;
 import com.franktran.jsp.student.StudentService;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -11,8 +15,13 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
+
+import static com.franktran.jsp.config.security.UserRole.ADMIN;
+import static com.franktran.jsp.config.security.UserRole.ENROLMENT;
 
 @Controller
 public class EnrolmentController {
@@ -30,13 +39,17 @@ public class EnrolmentController {
     }
 
     @GetMapping
-    public String index(Model model) {
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_ENROLMENT', 'ROLE_COURSE', 'ROLE_STUDENT')")
+    public String index(Model model, Authentication authentication) {
+        UserRole[] editableRoles = new UserRole[] {ADMIN, ENROLMENT};
         List<Enrolment> enrolments = enrolmentService.getAllEnrolments();
         model.addAttribute("enrolments", enrolments);
+        model.addAttribute("isEditable", UserRole.isEditable(editableRoles, authentication.getAuthorities()));
         return "enrolment/enrolment-list";
     }
 
     @GetMapping("/create-enrolment")
+    @PreAuthorize("hasAnyAuthority('ADMIN:WRITE', 'ENROLMENT:WRITE')")
     public String showCreateEnrolment(@ModelAttribute("enrolment") Enrolment enrolment, Model model) {
         model.addAttribute("action", "Create");
         model.addAttribute("courses", courseService.getAllCourses());
@@ -45,6 +58,7 @@ public class EnrolmentController {
     }
 
     @PostMapping("/save-enrolment")
+    @PreAuthorize("hasAnyAuthority('ADMIN:WRITE', 'ENROLMENT:WRITE')")
     public String saveEnrolment(@ModelAttribute("enrolment") @Valid Enrolment enrolment,
                                 BindingResult bindingResult,
                                 RedirectAttributes ra,
@@ -83,6 +97,7 @@ public class EnrolmentController {
     }
 
     @PostMapping("/update-enrolment")
+    @PreAuthorize("hasAnyAuthority('ADMIN:WRITE', 'ENROLMENT:WRITE')")
     public String showUpdateEnrolment(@RequestParam long id, Model model) {
         Enrolment enrolment = enrolmentService.getEnrolmentById(id);
         model.addAttribute("action", "Update");
@@ -93,6 +108,7 @@ public class EnrolmentController {
     }
 
     @PostMapping("/delete-enrolment")
+    @PreAuthorize("hasAnyAuthority('ADMIN:WRITE', 'ENROLMENT:WRITE')")
     public String deleteEnrolment(@RequestParam long id, Model model) {
         ResultDto result = new ResultDto();
         try {

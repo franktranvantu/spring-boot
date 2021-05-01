@@ -2,21 +2,17 @@ package com.franktran.jsp.config.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.env.Environment;
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
-
-import static com.franktran.jsp.config.security.UserRole.ADMIN;
-import static com.franktran.jsp.config.security.UserRole.ADMINTRAINEE;
 
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
@@ -24,10 +20,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final Environment environment;
     private final PasswordEncoder passwordEncoder;
+    private final UserDetailsService userDetailsService;
 
-    public WebSecurityConfig(Environment environment, PasswordEncoder passwordEncoder) {
+    public WebSecurityConfig(Environment environment, PasswordEncoder passwordEncoder, UserDetailsService userDetailsService) {
         this.environment = environment;
         this.passwordEncoder = passwordEncoder;
+        this.userDetailsService = userDetailsService;
     }
 
     @Override
@@ -59,23 +57,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .deleteCookies("JSESSIONID", "remember-me");
     }
 
-    @Override
     @Bean
-    protected UserDetailsService userDetailsService() {
-        UserDetails frank = User.builder()
-                .username("frank")
-                .password(passwordEncoder.encode("frank123"))
-                .authorities(ADMIN.getAuthorities())
-                .build();
-
-        UserDetails henry = User.builder()
-                .username("henry")
-                .password(passwordEncoder.encode("henry123"))
-                .authorities(ADMINTRAINEE.getAuthorities())
-                .build();
-
-
-        return new InMemoryUserDetailsManager(frank, henry);
+    public AuthenticationProvider authenticationProvider() {
+        DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
+        daoAuthenticationProvider.setUserDetailsService(userDetailsService);
+        daoAuthenticationProvider.setPasswordEncoder(passwordEncoder);
+        return daoAuthenticationProvider;
     }
 
     private AuthenticationFailureHandler loginFailureHandler() {

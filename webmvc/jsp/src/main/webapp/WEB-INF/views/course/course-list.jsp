@@ -42,7 +42,9 @@
         <div class="card">
             <div class="card-header bg-transparent d-flex justify-content-between align-items-center">
                 <h4 class="card-title mb-0">All Courses List</h4>
-                <a href="${contextPath}/course/create-course" class="btn btn-primary"><i class="fas fa-user-plus"></i> Add new</a>
+                <c:if test="${isEditable}">
+                    <a href="${contextPath}/course/create-course" class="btn btn-primary"><i class="fas fa-user-plus"></i> Add new</a>
+                </c:if>
             </div>
             <div class="card-body">
                 <table id="course" class="table">
@@ -50,7 +52,9 @@
                         <tr class="text-center">
                             <th>Id</th>
                             <th>Name</th>
-                            <th>Actions</th>
+                            <c:if test="${isEditable}">
+                                <th>Actions</th>
+                            </c:if>
                         </tr>
                     </thead>
                     <tbody>
@@ -58,13 +62,15 @@
                         <tr>
                             <td class="text-center">${course.id}</td>
                             <td>${course.name}</td>
-                            <td class="text-center">
-                                <form action="${contextPath}/course/update-course" method="post">
-                                    <input type="hidden" name="id" value="${course.id}" />
-                                    <button class="btn btn-sm btn-primary"><i class="fas fa-pencil-alt"></i></button>
-                                    <a href="" class="btn btn-sm btn-danger delete-student-button" data-id="${course.id}"><i class="fas fa-trash"></i></a>
-                                </form>
-                            </td>
+                            <c:if test="${isEditable}">
+                                <td class="text-center">
+                                    <form action="${contextPath}/course/update-course" method="post">
+                                        <input type="hidden" name="id" value="${course.id}" />
+                                        <button class="btn btn-sm btn-primary"><i class="fas fa-pencil-alt"></i></button>
+                                        <a href="" class="btn btn-sm btn-danger delete-student-button" data-id="${course.id}"><i class="fas fa-trash"></i></a>
+                                    </form>
+                                </td>
+                            </c:if>
                         </tr>
                     </c:forEach>
                     </tbody>

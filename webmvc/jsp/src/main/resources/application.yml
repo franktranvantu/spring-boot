@@ -4,14 +4,11 @@ server:
 
 spring:
   profiles:
-    active: office
-  h2:
-    console:
-      enabled: true
-  datasource:
-    url: jdbc:h2:mem:testdb
+    active: home
   jpa:
     show-sql: true
+    hibernate:
+      ddl-auto: create-drop
   mvc:
     view:
       prefix: /WEB-INF/views/

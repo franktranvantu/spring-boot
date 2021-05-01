@@ -1,15 +1,17 @@
 package com.franktran.jsp.enrolment;
 
+import com.franktran.jsp.config.security.UserRole;
 import com.franktran.jsp.course.Course;
 import com.franktran.jsp.course.CourseService;
 import com.franktran.jsp.student.Student;
 import com.franktran.jsp.student.StudentService;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Stream;
 
 @Service
 public class EnrolmentService {
