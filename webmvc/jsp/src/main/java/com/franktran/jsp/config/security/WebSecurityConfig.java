@@ -12,7 +12,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
-import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 
 import static com.franktran.jsp.config.security.UserRole.ADMIN;
@@ -39,20 +38,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest()
                 .authenticated()
                 .and()
-                .formLogin()
-                .successHandler(loginSuccessHandler())
-                .failureHandler(loginFailureHandler())
-                .loginPage("/login").permitAll()
-                .loginProcessingUrl("/process-login")
+                    .formLogin()
+                    .loginPage("/login").permitAll()
+                    .loginProcessingUrl("/process-login")
+                    .failureHandler(loginFailureHandler())
                 .and()
-                .rememberMe() // default is 2 weeks
-                .and().logout()
-                .logoutSuccessHandler(logoutSuccessHandler())
-                .logoutUrl("/logout")
-                .clearAuthentication(true)
-                .invalidateHttpSession(true)
-                .deleteCookies("JSESSIONID", "remember-me")
-                .logoutSuccessUrl("/login");
+                    .rememberMe() // default is 2 weeks
+                    .rememberMeParameter("remember-me")
+                .and()
+                    .logout()
+                    .logoutUrl("/logout")
+                    .logoutSuccessHandler(logoutSuccessHandler())
+                    .clearAuthentication(true)
+                    .invalidateHttpSession(true)
+                    .deleteCookies("JSESSIONID", "remember-me");
     }
 
     @Override
@@ -72,10 +71,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
         return new InMemoryUserDetailsManager(frank, henry);
-    }
-
-    private AuthenticationSuccessHandler loginSuccessHandler() {
-        return (request, response, authentication) -> response.sendRedirect(environment.getProperty("server.servlet.context-path"));
     }
 
     private AuthenticationFailureHandler loginFailureHandler() {
