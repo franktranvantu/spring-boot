@@ -38,25 +38,25 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .csrf().disable()
-                .authorizeRequests()
-                .anyRequest()
-                .authenticated()
-                .and()
-                    .formLogin()
-                    .loginPage("/login").permitAll()
-                    .loginProcessingUrl("/process-login")
-                    .failureHandler(loginFailureHandler())
-                .and()
-                    .rememberMe() // default is 2 weeks
-                    .rememberMeParameter("remember-me")
-                .and()
-                    .logout()
-                    .logoutUrl("/logout")
-                    .logoutSuccessHandler(logoutSuccessHandler())
-                    .clearAuthentication(true)
-                    .invalidateHttpSession(true)
-                    .deleteCookies("JSESSIONID", "remember-me");
+            .csrf().disable()
+            .authorizeRequests()
+            .anyRequest()
+            .authenticated()
+            .and()
+                .formLogin()
+                .loginPage("/login").permitAll()
+                .loginProcessingUrl("/process-login")
+                .failureHandler(loginFailureHandler())
+            .and()
+                .rememberMe() // default is 2 weeks
+                .rememberMeParameter("remember-me")
+            .and()
+                .logout()
+                .logoutUrl("/logout")
+                .logoutSuccessHandler(logoutSuccessHandler())
+                .clearAuthentication(true)
+                .invalidateHttpSession(true)
+                .deleteCookies("JSESSIONID", "remember-me");
     }
 
     @Override
