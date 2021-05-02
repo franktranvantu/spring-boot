@@ -20,12 +20,18 @@ import static com.franktran.jsp.config.security.UserRole.COURSE;
 
 @Controller
 @RequestMapping("/course")
+@SessionAttributes("username")
 public class CourseController {
 
     private final CourseService courseService;
 
     public CourseController(CourseService courseService) {
         this.courseService = courseService;
+    }
+
+    @ModelAttribute("username")
+    public String username(Authentication authentication) {
+        return authentication.getName();
     }
 
     @GetMapping
@@ -35,14 +41,14 @@ public class CourseController {
         List<Course> courses = courseService.getAllCourses();
         model.addAttribute("courses", courses);
         model.addAttribute("isEditable", UserRole.isEditable(editableRoles, authentication.getAuthorities()));
-        return "course/course-list";
+        return "course-list";
     }
 
     @GetMapping("/create-course")
     @PreAuthorize("hasAnyAuthority('ADMIN:WRITE', 'COURSE:WRITE')")
     public String showCreateCourse(@ModelAttribute("course") Course course, Model model) {
         model.addAttribute("action", "Create");
-        return "course/save-course";
+        return "save-course";
     }
 
     @PostMapping("/save-course")
@@ -53,7 +59,7 @@ public class CourseController {
                              Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("action", Objects.isNull(course.getId()) ? "Create" : "Update");
-            return "course/save-course";
+            return "save-course";
         }
         ResultDto result = new ResultDto();
         try {
@@ -73,7 +79,7 @@ public class CourseController {
             result.setStatus(ResultStatus.FAIL);
             result.setMessage(e.getMessage());
             model.addAttribute("result", result);
-            return "course/save-course";
+            return "save-course";
         }
     }
 
@@ -83,27 +89,22 @@ public class CourseController {
         Course course = courseService.getCourseById(id);
         model.addAttribute("action", "Update");
         model.addAttribute("course", course);
-        return "course/save-course";
+        return "save-course";
     }
 
     @PostMapping("/delete-course")
     @PreAuthorize("hasAnyAuthority('ADMIN:WRITE', 'COURSE:WRITE')")
-    public String deleteCourse(@RequestParam long id,
-                               RedirectAttributes ra,
-                               Model model) {
+    public String deleteCourse(@RequestParam long id, RedirectAttributes ra) {
         ResultDto result = new ResultDto();
         try {
             courseService.deleteCourse(id);
             result.setStatus(ResultStatus.SUCCESS);
             result.setMessage("Deleted course successful!");
-            ra.addFlashAttribute("result", result);
-            return "redirect:/student";
         } catch (Exception e) {
             result.setStatus(ResultStatus.FAIL);
             result.setMessage(e.getMessage());
-            model.addAttribute("result", result);
-            model.addAttribute("courses", courseService.getAllCourses());
-            return "course/course-list";
         }
+        ra.addFlashAttribute("result", result);
+        return "redirect:/student";
     }
 }

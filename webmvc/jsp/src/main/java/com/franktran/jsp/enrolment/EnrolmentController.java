@@ -7,7 +7,6 @@ import com.franktran.jsp.dto.ResultStatus;
 import com.franktran.jsp.student.StudentService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,15 +14,14 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
-import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 import static com.franktran.jsp.config.security.UserRole.ADMIN;
 import static com.franktran.jsp.config.security.UserRole.ENROLMENT;
 
 @Controller
+@SessionAttributes("username")
 public class EnrolmentController {
 
     private final EnrolmentService enrolmentService;
@@ -38,6 +36,11 @@ public class EnrolmentController {
         this.studentService = studentService;
     }
 
+    @ModelAttribute("username")
+    public String username(Authentication authentication) {
+        return authentication.getName();
+    }
+
     @GetMapping
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_ENROLMENT', 'ROLE_COURSE', 'ROLE_STUDENT')")
     public String index(Model model, Authentication authentication) {
@@ -45,7 +48,7 @@ public class EnrolmentController {
         List<Enrolment> enrolments = enrolmentService.getAllEnrolments();
         model.addAttribute("enrolments", enrolments);
         model.addAttribute("isEditable", UserRole.isEditable(editableRoles, authentication.getAuthorities()));
-        return "enrolment/enrolment-list";
+        return "enrolment-list";
     }
 
     @GetMapping("/create-enrolment")
@@ -54,7 +57,7 @@ public class EnrolmentController {
         model.addAttribute("action", "Create");
         model.addAttribute("courses", courseService.getAllCourses());
         model.addAttribute("students", studentService.getAllStudents());
-        return "enrolment/save-enrolment";
+        return "save-enrolment";
     }
 
     @PostMapping("/save-enrolment")
@@ -65,7 +68,7 @@ public class EnrolmentController {
                                 Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("action", Objects.isNull(enrolment.getId()) ? "Create" : "Update");
-            return "enrolment/save-enrolment";
+            return "save-enrolment";
         }
         ResultDto result = new ResultDto();
         try {
@@ -89,10 +92,10 @@ public class EnrolmentController {
             model.addAttribute("courses", courseService.getAllCourses());
             model.addAttribute("students", studentService.getAllStudents());
             if (Objects.isNull(enrolment.getId())) {
-                return "enrolment/save-enrolment";
+                return "save-enrolment";
             }
             model.addAttribute("enrolment", enrolment);
-            return "enrolment/save-enrolment";
+            return "save-enrolment";
         }
     }
 
@@ -104,25 +107,23 @@ public class EnrolmentController {
         model.addAttribute("enrolment", enrolment);
         model.addAttribute("courses", courseService.getAllCourses());
         model.addAttribute("students", studentService.getAllStudents());
-        return "enrolment/save-enrolment";
+        return "save-enrolment";
     }
 
     @PostMapping("/delete-enrolment")
     @PreAuthorize("hasAnyAuthority('ADMIN:WRITE', 'ENROLMENT:WRITE')")
-    public String deleteEnrolment(@RequestParam long id, Model model) {
+    public String deleteEnrolment(@RequestParam long id, RedirectAttributes ra) {
         ResultDto result = new ResultDto();
         try {
             enrolmentService.deleteEnrolmentById(id);
             result.setStatus(ResultStatus.SUCCESS);
             result.setMessage("Deleted enrolment successful!");
-            model.addAttribute("result", result);
+            ra.addFlashAttribute("result", result);
         } catch (Exception e) {
             result.setStatus(ResultStatus.FAIL);
             result.setMessage(e.getMessage());
-            model.addAttribute("result", result);
         }
-        List<Enrolment> enrolments = enrolmentService.getAllEnrolments();
-        model.addAttribute("enrolments", enrolments);
-        return "enrolment/enrolment-list";
+        ra.addFlashAttribute("result", result);
+        return "redirect:/";
     }
 }

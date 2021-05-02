@@ -20,6 +20,7 @@ import static com.franktran.jsp.config.security.UserRole.STUDENT;
 
 @Controller
 @RequestMapping("/student")
+@SessionAttributes("username")
 public class StudentController {
 
   private final StudentService studentService;
@@ -28,21 +29,27 @@ public class StudentController {
     this.studentService = studentService;
   }
 
+  @ModelAttribute("username")
+  public String username(Authentication authentication) {
+    return authentication.getName();
+  }
+
   @GetMapping
   @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_ENROLMENT', 'ROLE_COURSE', 'ROLE_STUDENT')")
   public String index(Model model, Authentication authentication) {
     UserRole[] editableRoles = new UserRole[] {ADMIN, STUDENT};
     List<Student> students = studentService.getAllStudents();
+    model.addAttribute("username", authentication.getName());
     model.addAttribute("students", students);
     model.addAttribute("isEditable", UserRole.isEditable(editableRoles, authentication.getAuthorities()));
-    return "student/student-list";
+    return "student-list";
   }
 
   @GetMapping("/create-student")
   @PreAuthorize("hasAnyAuthority('ADMIN:WRITE', 'STUDENT:WRITE')")
   public String showCreateStudent(@ModelAttribute("student") Student student, Model model) {
     model.addAttribute("action", "Create");
-    return "student/save-student";
+    return "save-student";
   }
 
   @PostMapping("/save-student")
@@ -53,7 +60,7 @@ public class StudentController {
                             Model model) {
     if (bindingResult.hasErrors()) {
       model.addAttribute("action", Objects.isNull(student.getId()) ? "Create" : "Update");
-      return "student/save-student";
+      return "save-student";
     }
     ResultDto result = new ResultDto();
     try {
@@ -73,7 +80,7 @@ public class StudentController {
       result.setStatus(ResultStatus.FAIL);
       result.setMessage(e.getMessage());
       model.addAttribute("result", result);
-      return "student/save-student";
+      return "save-student";
     }
   }
 
@@ -83,28 +90,23 @@ public class StudentController {
     Student student = studentService.getStudentById(id);
     model.addAttribute("action", "Update");
     model.addAttribute("student", student);
-    return "student/save-student";
+    return "save-student";
   }
 
   @PostMapping("/delete-student")
   @PreAuthorize("hasAnyAuthority('ADMIN:WRITE', 'STUDENT:WRITE')")
-  public String deleteStudent(@RequestParam long id,
-                              RedirectAttributes ra,
-                              Model model) {
+  public String deleteStudent(@RequestParam long id, RedirectAttributes ra) {
     ResultDto result = new ResultDto();
     try {
       studentService.deleteStudent(id);
       result.setStatus(ResultStatus.SUCCESS);
       result.setMessage("Deleted student successful!");
-      ra.addFlashAttribute("result", result);
-      return "redirect:/student";
     } catch (Exception e) {
       result.setStatus(ResultStatus.FAIL);
       result.setMessage(e.getMessage());
-      model.addAttribute("result", result);
-      model.addAttribute("students", studentService.getAllStudents());
-      return "student/student-list";
     }
+    ra.addFlashAttribute("result", result);
+    return "redirect:/student";
   }
 
 }

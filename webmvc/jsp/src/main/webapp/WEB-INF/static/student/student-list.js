@@ -1,10 +1,8 @@
 $(function() {
   $('#student').DataTable({
-    scrollY: 550,
+    scrollY: 450,
     scroller: true
   });
-
-  $('.message').slideDown().delay(3000).slideUp();
 
   $('.table tbody').click(e => {
     const target = $(e.target);
