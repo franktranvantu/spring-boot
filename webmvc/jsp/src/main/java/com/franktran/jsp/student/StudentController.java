@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
@@ -36,9 +37,13 @@ public class StudentController {
 
   @GetMapping
   @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_ENROLMENT', 'ROLE_COURSE', 'ROLE_STUDENT')")
-  public String index(Model model, Authentication authentication) {
+  public String index(@RequestParam(required = false) String name,
+                      @RequestParam(required = false) String email,
+                      @RequestParam(required = false) LocalDate dob,
+                      Model model,
+                      Authentication authentication) {
     UserRole[] editableRoles = new UserRole[] {ADMIN, STUDENT};
-    List<Student> students = studentService.getAllStudents();
+    List<Student> students = studentService.getAllStudents(name, email, dob);
     model.addAttribute("username", authentication.getName());
     model.addAttribute("students", students);
     model.addAttribute("isEditable", UserRole.isEditable(editableRoles, authentication.getAuthorities()));

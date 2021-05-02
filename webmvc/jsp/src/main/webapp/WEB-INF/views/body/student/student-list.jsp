@@ -16,14 +16,46 @@
   </c:if>
 
   <div class="container">
-    <div class="card">
-      <div class="card-header bg-transparent d-flex justify-content-between align-items-center">
-        <h4 class="card-title mb-0">All Students List</h4>
-        <c:if test="${isEditable}">
-          <a href="${contextPath}/student/create-student" class="btn btn-primary"><i class="fas fa-user-plus"></i> Add new</a>
-        </c:if>
+    <div class="card border-0">
+      <div class="card-header bg-transparent">
+        <div class="mt-2 mb-4 d-flex">
+          <h4 class="card-title mb-0">Search student</h4>
+        </div>
+        <form action="${contextPath}/student" method="get">
+          <div class="row">
+            <div class="col">
+              <div class="form-group">
+                <label for="name" class="form-label">Name</label>
+                <input type="input" name="name" class="form-control" id="name">
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group">
+                <label for="email" class="form-label">Email</label>
+                <input type="input" name="email" class="form-control" id="email">
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group">
+                <label for="dob" class="form-label">Birthday</label>
+                <input type="input" name="dob" class="form-control" id="dob">
+              </div>
+            </div>
+            <div class="col-auto d-flex align-items-end justify-content-end">
+              <div class="form-group">
+                <button type="submit" class="btn btn-success"><i class="fas fa-search"></i> Search</button>
+              </div>
+            </div>
+          </div>
+        </form>
       </div>
       <div class="card-body">
+        <div class="mt-4 mb-4 d-flex justify-content-between align-items-center">
+          <h4 class="card-title mb-0">All Students List</h4>
+          <c:if test="${isEditable}">
+            <a href="${contextPath}/student/create-student" class="btn btn-primary"><i class="fas fa-user-plus"></i> Add new</a>
+          </c:if>
+        </div>
         <table id="student" class="table">
           <thead class="thead-dark">
           <tr class="text-center">

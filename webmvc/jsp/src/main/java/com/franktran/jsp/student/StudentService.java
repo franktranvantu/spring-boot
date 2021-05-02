@@ -1,8 +1,11 @@
 package com.franktran.jsp.student;
 
+import com.franktran.jsp.dto.SearchCriteria;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -18,6 +21,13 @@ public class StudentService {
 
   public List<Student> getAllStudents() {
     return studentRepository.findAll();
+  }
+
+  public List<Student> getAllStudents(String name, String email, LocalDate dob) {
+    StudentSpecification nameSpec = new StudentSpecification(new SearchCriteria("name", ":", name));
+    StudentSpecification emailSpec = new StudentSpecification(new SearchCriteria("email", ":", email));
+    StudentSpecification dobSpec = new StudentSpecification(new SearchCriteria("dob", ":", dob));
+    return studentRepository.findAll(Specification.where(nameSpec).and(emailSpec).and(dobSpec));
   }
 
   public Student getStudentById(long id) {

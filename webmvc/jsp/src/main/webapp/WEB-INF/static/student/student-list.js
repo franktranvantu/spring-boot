@@ -1,4 +1,11 @@
 $(function() {
+  const options = {
+    format: 'dd/mm/yyyy',
+    todayHighlight: true,
+    autoclose: true
+  }
+  $('#dob').datepicker(options);
+
   $('#student').DataTable({
     scrollY: 450,
     scroller: true
