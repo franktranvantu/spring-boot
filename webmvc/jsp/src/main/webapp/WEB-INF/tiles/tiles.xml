@@ -20,6 +20,12 @@
         <put-attribute name="jsLink" value="enrolment/save-enrolment.js" />
     </definition>
 
+    <definition name="change-password" extends="layout">
+        <put-attribute name="body" value="/WEB-INF/views/body/profile/change-password.jsp" />
+        <put-attribute name="cssLink" value="" />
+        <put-attribute name="jsLink" value="profile/change-password.js" />
+    </definition>
+
     <definition name="course-list" extends="layout">
         <put-attribute name="body" value="/WEB-INF/views/body/course/course-list.jsp" />
         <put-attribute name="cssLink" value="course/course.css" />

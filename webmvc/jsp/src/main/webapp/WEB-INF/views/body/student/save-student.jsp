@@ -12,7 +12,7 @@
         ${result.message}
     </div>
   </c:if>
-  <div class="container save-student">
+  <div class="container w-25">
     <h1 class="text-center mt-4 mb-4">${action} Student</h1>
     <form:form action="${contextPath}/student/save-student" method="post" modelAttribute="student" id="save-student">
       <form:hidden path="id"/>

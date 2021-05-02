@@ -19,12 +19,12 @@
         <ul class="navbar-nav ml-auto">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    ${username}
+                    <i class="fas fa-user"></i> Welcome, ${username}
                 </a>
                 <div class="dropdown-menu ml-auto position-absolute profile" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Change password</a>
+                    <a class="dropdown-item" href="${contextPath}/change-password"><i class="fas fa-pen"></i> Change password</a>
                     <div class="dropdown-divider"></div>
-                    <form class="dropdown-item mb-0" action="logout" method="post">
+                    <form class="dropdown-item mb-0" action="${contextPath}/logout" method="post">
                         <button class="w-100 border-0 bg-transparent text-left p-0"><i class="fas fa-sign-out-alt"></i> Logout</button>
                     </form>
                 </div>

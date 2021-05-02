@@ -9,7 +9,10 @@
     <link rel="stylesheet" href="${contextPath}/webjars/bootstrap-datepicker/css/bootstrap-datepicker.min.css">
     <link rel="stylesheet" href="${contextPath}/webjars/font-awesome/css/all.css">
     <link rel="stylesheet" href="${contextPath}/common.css">
-    <link rel="stylesheet" href="${contextPath}/<tiles:getAsString name="cssLink" />">
+    <c:set var="cssLink"><tiles:getAsString name="cssLink" /></c:set>
+    <c:if test="${not empty cssLink}">
+        <link rel="stylesheet" href="${contextPath}/${cssLink}">
+    </c:if>
 </head>
 <body>
     <tiles:insertAttribute name="header" />
@@ -21,6 +24,9 @@
     <script src="${contextPath}/webjars/datatables/js/jquery.dataTables.min.js"></script>
     <script src="${contextPath}/webjars/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
     <script src="${contextPath}/common.js"></script>
-    <script src="${contextPath}/<tiles:getAsString name="jsLink" />"></script>
+    <c:set var="jsLink"><tiles:getAsString name="jsLink" /></c:set>
+    <c:if test="${not empty jsLink}">
+        <script src="${contextPath}/${jsLink}"></script>
+    </c:if>
 </body>
 </html>

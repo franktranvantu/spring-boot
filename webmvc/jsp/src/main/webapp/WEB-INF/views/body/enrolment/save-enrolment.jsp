@@ -13,7 +13,7 @@
         </div>
     </c:if>
 
-    <div class="container save-enrolment">
+    <div class="container w-25">
         <h1 class="text-center mt-4 mb-4">${action} Enrolment</h1>
         <form:form action="${contextPath}/save-enrolment" method="post" modelAttribute="enrolment" id="save-enrolment">
             <form:hidden path="id" />
