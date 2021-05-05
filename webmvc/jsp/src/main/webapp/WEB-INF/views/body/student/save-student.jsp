@@ -19,25 +19,41 @@
       <div class="form-group row">
         <label for="name" class="col-sm-2 col-form-label">Name</label>
         <div class="col-sm-10">
-          <form:input path="name" class="form-control" id="name" aria-describedby="name"/>
-          <div id="name" class="invalid-feedback">
-            Name is mandatory
-          </div>
-          <div id="name" class="invalid-feedback">
-            <form:errors path="name"/>
-          </div>
+          <c:set var="nameError"><form:errors path="name"/></c:set>
+          <c:choose>
+            <c:when test="${empty nameError}">
+              <form:input path="name" class="form-control" id="name" aria-describedby="name"/>
+              <div id="name" class="invalid-feedback">
+                Name is mandatory
+              </div>
+            </c:when>
+            <c:when test="${not empty nameError}">
+              <form:input path="name" class="form-control is-invalid" id="name" aria-describedby="name"/>
+              <div id="name" class="invalid-feedback">
+                Name is mandatory
+              </div>
+            </c:when>
+          </c:choose>
         </div>
       </div>
       <div class="form-group row">
         <label for="email" class="col-sm-2 col-form-label">Email</label>
         <div class="col-sm-10">
-          <form:input path="email" class="form-control" id="email" aria-describedby="email"/>
-          <div id="email" class="invalid-feedback">
-            Email is mandatory
-          </div>
-          <div id="email" class="invalid-feedback">
-            <form:errors path="email"/>
-          </div>
+          <c:set var="emailError"><form:errors path="email"/></c:set>
+          <c:choose>
+            <c:when test="${empty emailError}">
+              <form:input path="email" class="form-control" id="email" aria-describedby="email"/>
+              <div id="email" class="invalid-feedback">
+                Email is mandatory
+              </div>
+            </c:when>
+            <c:when test="${not empty emailError}">
+              <form:input path="email" class="form-control is-invalid" id="email" aria-describedby="email"/>
+              <div id="email" class="invalid-feedback">
+                Email is mandatory
+              </div>
+            </c:when>
+          </c:choose>
         </div>
       </div>
       <div class="form-group row">
