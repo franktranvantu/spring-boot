@@ -18,7 +18,7 @@
         <form:form action="${contextPath}/save-enrolment" method="post" modelAttribute="enrolment" id="save-enrolment">
             <form:hidden path="id" />
             <div class="form-group row">
-                <label for="course" class="col-sm-2 col-form-label">Course</label>
+                <label for="course" class="col-sm-2 col-form-label">Course <span class="text-danger">*</span></label>
                 <div class="col-sm-10">
                     <form:select path="course" class="form-control" id="course" aria-describedby="course">
                         <c:forEach var="course" items="${courses}">
@@ -34,7 +34,7 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="student" class="col-sm-2 col-form-label">Student</label>
+                <label for="student" class="col-sm-2 col-form-label">Student <span class="text-danger">*</span></label>
                 <div class="col-sm-10">
                     <form:select path="student" class="form-control" id="student" aria-describedby="student">
                         <c:forEach var="student" items="${students}">
@@ -50,7 +50,7 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="semester" class="col-sm-2 col-form-label">Semester</label>
+                <label for="semester" class="col-sm-2 col-form-label">Semester <span class="text-danger">*</span></label>
                 <div class="col-sm-10">
                     <form:input path="semester" class="form-control" id="semester" aria-describedby="semester"/>
                     <div id="semester" class="invalid-feedback">

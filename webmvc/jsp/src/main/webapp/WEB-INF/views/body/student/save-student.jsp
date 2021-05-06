@@ -17,7 +17,7 @@
     <form:form action="${contextPath}/student/save-student" method="post" modelAttribute="student" id="save-student">
       <form:hidden path="id"/>
       <div class="form-group row">
-        <label for="name" class="col-sm-2 col-form-label">Name</label>
+        <label for="name" class="col-sm-2 col-form-label">Name <span class="text-danger">*</span></label>
         <div class="col-sm-10">
           <form:input path="name" class="form-control" id="name" aria-describedby="name"/>
           <div id="name" class="invalid-feedback">
@@ -29,7 +29,7 @@
         </div>
       </div>
       <div class="form-group row">
-        <label for="email" class="col-sm-2 col-form-label">Email</label>
+        <label for="email" class="col-sm-2 col-form-label">Email <span class="text-danger">*</span></label>
         <div class="col-sm-10">
           <form:input path="email" class="form-control" id="email" aria-describedby="email"/>
           <div id="email" class="invalid-feedback">
