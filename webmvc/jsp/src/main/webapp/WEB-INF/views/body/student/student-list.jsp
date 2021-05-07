@@ -80,8 +80,9 @@
                   <form class="mb-0" action="${contextPath}/student/update-student" method="post">
                     <input type="hidden" name="id" value="${student.id}"/>
                     <button class="btn btn-sm btn-primary"><i class="fas fa-pencil-alt"></i></button>
-                    <a href="" class="btn btn-sm btn-danger delete-student-button" data-id="${student.id}"><i
-                        class="fas fa-trash"></i></a>
+                    <a href="" class="btn btn-sm btn-danger delete-student-button" data-id="${student.id}">
+                      <i class="fas fa-trash"></i>
+                    </a>
                   </form>
                 </td>
               </c:if>
