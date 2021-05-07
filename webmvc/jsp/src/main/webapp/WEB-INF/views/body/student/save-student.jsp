@@ -17,8 +17,8 @@
     <form:form action="${contextPath}/student/save-student" method="post" modelAttribute="student" id="save-student">
       <form:hidden path="id"/>
       <div class="form-group row">
-        <label for="name" class="col-sm-2 col-form-label">Name <span class="text-danger">*</span></label>
-        <div class="col-sm-10">
+        <label for="name" class="col-sm-3 col-form-label">Name <span class="text-danger">*</span></label>
+        <div class="col-sm">
           <c:set var="nameError"><form:errors path="name"/></c:set>
           <c:choose>
             <c:when test="${empty nameError}">
@@ -37,8 +37,8 @@
         </div>
       </div>
       <div class="form-group row">
-        <label for="email" class="col-sm-2 col-form-label">Email <span class="text-danger">*</span></label>
-        <div class="col-sm-10">
+        <label for="email" class="col-sm-3 col-form-label">Email <span class="text-danger">*</span></label>
+        <div class="col-sm">
           <c:set var="emailError"><form:errors path="email"/></c:set>
           <c:choose>
             <c:when test="${empty emailError}">
@@ -57,8 +57,8 @@
         </div>
       </div>
       <div class="form-group row">
-        <label for="dob" class="col-sm-2 col-form-label">Birthday</label>
-        <div class="col-sm-10">
+        <label for="dob" class="col-sm-3 col-form-label">Birthday</label>
+        <div class="col-sm">
           <form:input path="dob" class="form-control" id="dob" placeholder="dd/mm/yyyy"/>
         </div>
       </div>

@@ -19,7 +19,7 @@
     <div class="card border-0">
       <div class="card-header bg-transparent">
         <div class="mt-2 mb-4 d-flex">
-          <h4 class="card-title mb-0">Search student</h4>
+          <h4 class="card-title mb-0">Search students</h4>
         </div>
         <form action="${contextPath}/student" method="get">
           <div class="row">
