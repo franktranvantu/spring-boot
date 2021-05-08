@@ -28,10 +28,12 @@ public class StudentController {
 
   private final StudentService studentService;
   private final StudentExcelExporter studentExcelExporter;
+  private final StudentPdfExporter studentPdfExporter;
 
-  public StudentController(StudentService studentService, StudentExcelExporter studentExcelExporter) {
+  public StudentController(StudentService studentService, StudentExcelExporter studentExcelExporter, StudentPdfExporter studentPdfExporter) {
     this.studentService = studentService;
     this.studentExcelExporter = studentExcelExporter;
+    this.studentPdfExporter = studentPdfExporter;
   }
 
   @ModelAttribute("username")
@@ -50,6 +52,7 @@ public class StudentController {
     List<Student> students = studentService.getAllStudents(name, email, dob);
     model.addAttribute("username", authentication.getName());
     model.addAttribute("students", students);
+    model.addAttribute("student", new Student(name, email, dob));
     model.addAttribute("isEditable", UserRole.isEditable(editableRoles, authentication.getAuthorities()));
     return "student-list";
   }
@@ -62,6 +65,17 @@ public class StudentController {
                             HttpServletResponse response) throws IOException {
     List<Student> students = studentService.getAllStudents(name, email, dob);
     studentExcelExporter.export(response, students, "Students.xlsx");
+    return "forward:/student";
+  }
+
+  @PostMapping("/export-pdf")
+  @PreAuthorize("hasAnyAuthority('ADMIN:WRITE', 'STUDENT:WRITE')")
+  public String exportPdf(@RequestParam(required = false) String name,
+                            @RequestParam(required = false) String email,
+                            @RequestParam(required = false) LocalDate dob,
+                            HttpServletResponse response) throws IOException {
+    List<Student> students = studentService.getAllStudents(name, email, dob);
+    studentPdfExporter.export(response, students, "Students.pdf");
     return "forward:/student";
   }
 

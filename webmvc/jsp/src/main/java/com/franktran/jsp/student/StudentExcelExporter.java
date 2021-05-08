@@ -16,7 +16,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Locale;
 
 @Component
 public class StudentExcelExporter {
@@ -71,7 +70,6 @@ public class StudentExcelExporter {
     XSSFFont font = workbook.createFont();
     font.setFontHeight(14);
     style.setFont(font);
-    style.setAlignment(HorizontalAlignment.CENTER);
 
     for (Student user : students) {
       Row row = sheet.createRow(rowCount++);
@@ -88,7 +86,7 @@ public class StudentExcelExporter {
     writeHeaderLine();
     writeDataLines(students);
 
-    response.addHeader("Content-Disposition", String.format("attachment; filename=%s", fileName));
+    response.setHeader("Content-Disposition", String.format("attachment; filename=%s", fileName));
     ServletOutputStream outputStream = response.getOutputStream();
     workbook.write(outputStream);
     outputStream.close();

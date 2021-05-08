@@ -25,19 +25,19 @@
           <div class="col">
             <div class="form-group">
               <label for="name" class="form-label">Name</label>
-              <input type="input" class="form-control" id="name">
+              <input type="input" class="form-control" id="name" value="${student.name}">
             </div>
           </div>
           <div class="col">
             <div class="form-group">
               <label for="email" class="form-label">Email</label>
-              <input type="input" class="form-control" id="email">
+              <input type="input" class="form-control" id="email" value="${student.email}">
             </div>
           </div>
           <div class="col">
             <div class="form-group">
               <label for="dob" class="form-label">Birthday</label>
-              <input type="input" class="form-control" id="dob">
+              <input type="input" class="form-control" id="dob" value="${student.dob}">
             </div>
           </div>
         </div>
