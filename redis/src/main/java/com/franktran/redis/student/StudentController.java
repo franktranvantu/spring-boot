@@ -28,7 +28,7 @@ public class StudentController {
   }
 
   @GetMapping("/{id}")
-  public ResponseEntity<Student> getStudentById(@PathVariable long id) {
+  public ResponseEntity<Student> getStudentById(@PathVariable Long id) {
     return studentService.getStudentById(id);
   }
 
@@ -37,14 +37,14 @@ public class StudentController {
     return studentService.createStudent(student);
   }
 
-  @PutMapping("{studentId}")
-  public ResponseEntity<String> updateStudent(@PathVariable Long studentId, @RequestBody Student student) {
-    return studentService.updateStudent(studentId, student);
+  @PutMapping("{id}")
+  public ResponseEntity<String> updateStudent(@PathVariable Long id, @RequestBody Student student) {
+    return studentService.updateStudent(id, student);
   }
 
-  @DeleteMapping("{studentId}")
-  public ResponseEntity<String> deleteStudent(@PathVariable Long studentId) {
-    return studentService.deleteStudent(studentId);
+  @DeleteMapping("{id}")
+  public ResponseEntity<String> deleteStudent(@PathVariable Long id) {
+    return studentService.deleteStudent(id);
   }
 
 }

@@ -25,7 +25,7 @@ public class StudentService {
     }
   }
 
-  public ResponseEntity<Student> getStudentById(long id) {
+  public ResponseEntity<Student> getStudentById(Long id) {
     try {
       return ResponseEntity.ok(studentRepository.findById(id).orElse(null));
     } catch (Exception e) {
@@ -46,8 +46,8 @@ public class StudentService {
     }
   }
 
-  public ResponseEntity<String> updateStudent(long studentId, Student student) {
-    Student existStudent = studentRepository.findById(studentId).orElseThrow(() -> new IllegalArgumentException(String.format("Student with id %s not exists", studentId)));
+  public ResponseEntity<String> updateStudent(Long id, Student student) {
+    Student existStudent = studentRepository.findById(id).orElseThrow(() -> new IllegalArgumentException(String.format("Student with id %s not exists", id)));
     if (Objects.nonNull(student.getName()) && !Objects.equals(existStudent.getName(), student.getName())) {
       existStudent.setName(student.getName());
     }
@@ -66,8 +66,8 @@ public class StudentService {
     }
   }
 
-  public ResponseEntity<String> deleteStudent(long studentId) {
-    boolean existsById = studentRepository.existsById(studentId);
+  public ResponseEntity<String> deleteStudent(Long id) {
+    boolean existsById = studentRepository.existsById(id);
     if (!existsById) {
       throw new IllegalArgumentException(String.format("Student with id %s not exists", studentId));
     }

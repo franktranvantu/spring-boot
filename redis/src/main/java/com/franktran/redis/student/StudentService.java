@@ -28,7 +28,7 @@ public class StudentService {
     }
   }
 
-  public ResponseEntity<Student> getStudentById(long id) {
+  public ResponseEntity<Student> getStudentById(Long id) {
     try {
       Student student = (Student) redisTemplate.opsForHash().get(KEY, id);
       return ResponseEntity.ok(student);
@@ -51,7 +51,7 @@ public class StudentService {
     }
   }
 
-  public ResponseEntity<String> updateStudent(long studentId, Student student) {
+  public ResponseEntity<String> updateStudent(Long studentId, Student student) {
     Student existStudent = (Student) redisTemplate.opsForHash().get(KEY, studentId);
     if (Objects.nonNull(student.getName()) && !Objects.equals(existStudent.getName(), student.getName())) {
       existStudent.setName(student.getName());
@@ -71,10 +71,10 @@ public class StudentService {
     }
   }
 
-  public ResponseEntity<String> deleteStudent(long studentId) {
-    Student student = (Student) redisTemplate.opsForHash().get(KEY, studentId);
+  public ResponseEntity<String> deleteStudent(Long id) {
+    Student student = (Student) redisTemplate.opsForHash().get(KEY, id);
     if (Objects.isNull(student)) {
-      throw new IllegalArgumentException(String.format("Student with id %s not exists", studentId));
+      throw new IllegalArgumentException(String.format("Student with id %s not exists", id));
     }
     try {
       redisTemplate.opsForHash().delete(KEY, student);
