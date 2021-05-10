@@ -30,7 +30,7 @@ public class StudentService {
 
   public ResponseEntity<Student> getStudentById(Long id) {
     try {
-      Student student = (Student) redisTemplate.opsForHash().get(KEY, id);
+      Student student = (Student) redisTemplate.opsForHash().get(KEY, id.toString());
       return ResponseEntity.ok(student);
     } catch (Exception e) {
       return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
@@ -51,8 +51,8 @@ public class StudentService {
     }
   }
 
-  public ResponseEntity<String> updateStudent(Long studentId, Student student) {
-    Student existStudent = (Student) redisTemplate.opsForHash().get(KEY, studentId);
+  public ResponseEntity<String> updateStudent(Long id, Student student) {
+    Student existStudent = (Student) redisTemplate.opsForHash().get(KEY, id.toString());
     if (Objects.nonNull(student.getName()) && !Objects.equals(existStudent.getName(), student.getName())) {
       existStudent.setName(student.getName());
     }
@@ -64,7 +64,7 @@ public class StudentService {
       existStudent.setEmail(student.getEmail());
     }
     try {
-      redisTemplate.opsForHash().put(KEY, studentId, student);
+      redisTemplate.opsForHash().put(KEY, id.toString(), student);
       return ResponseEntity.ok("Student updated successful!");
     } catch (Exception e) {
       return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
@@ -72,7 +72,7 @@ public class StudentService {
   }
 
   public ResponseEntity<String> deleteStudent(Long id) {
-    Student student = (Student) redisTemplate.opsForHash().get(KEY, id);
+    Student student = (Student) redisTemplate.opsForHash().get(KEY, id.toString());
     if (Objects.isNull(student)) {
       throw new IllegalArgumentException(String.format("Student with id %s not exists", id));
     }
