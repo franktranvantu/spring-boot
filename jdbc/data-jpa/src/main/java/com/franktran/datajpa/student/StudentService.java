@@ -37,7 +37,7 @@ public class StudentService {
   public ResponseEntity<String> createStudent(Student student) {
     Optional<Student> studentOptional = studentRepository.findStudentByEmail(student.getEmail());
     if (studentOptional.isPresent()) {
-      throw new IllegalArgumentException("email taken");
+      throw new IllegalArgumentException("Email taken");
     }
     try {
       studentRepository.save(student);
@@ -56,7 +56,7 @@ public class StudentService {
     if (Objects.nonNull(student.getEmail()) && !Objects.equals(existStudent.getEmail(), student.getEmail())) {
       Optional<Student> studentOptional = studentRepository.findStudentByEmail(student.getEmail());
       if (studentOptional.isPresent()) {
-        throw new IllegalArgumentException("email taken");
+        throw new IllegalArgumentException("Email taken");
       }
       existStudent.setEmail(student.getEmail());
     }
