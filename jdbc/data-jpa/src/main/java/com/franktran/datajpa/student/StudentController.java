@@ -1,5 +1,6 @@
 package com.franktran.datajpa.student;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,12 +16,12 @@ public class StudentController {
   }
 
   @GetMapping
-  public List<Student> getStudents() {
+  public ResponseEntity<List<Student>> getStudents() {
     return studentService.getStudents();
   }
 
   @GetMapping("/{id}")
-  public Student getStudentById(@PathVariable long id) {
+  public ResponseEntity<Student> getStudentById(@PathVariable long id) {
     return studentService.getStudentById(id);
   }
 
