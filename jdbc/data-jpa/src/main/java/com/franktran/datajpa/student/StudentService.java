@@ -3,7 +3,6 @@ package com.franktran.datajpa.student;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Objects;
@@ -47,7 +46,6 @@ public class StudentService {
     }
   }
 
-  @Transactional
   public ResponseEntity<String> updateStudent(long studentId, Student student) {
     Student existStudent = studentRepository.findById(studentId).orElseThrow(() -> new IllegalArgumentException(String.format("Student with id %s not exists", studentId)));
     if (Objects.nonNull(student.getName()) && !Objects.equals(existStudent.getName(), student.getName())) {
