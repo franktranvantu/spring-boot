@@ -1,5 +1,6 @@
 package com.franktran.datajpa.student;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,23 +19,36 @@ public class StudentService {
   }
 
   public ResponseEntity<List<Student>> getStudents() {
-    return ResponseEntity.ok(studentRepository.findAll());
+    try {
+      return ResponseEntity.ok(studentRepository.findAll());
+    } catch (Exception e) {
+      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    }
   }
 
   public ResponseEntity<Student> getStudentById(long id) {
-    return ResponseEntity.ok(studentRepository.findById(id).orElse(null));
+    try {
+      return ResponseEntity.ok(studentRepository.findById(id).orElse(null));
+    } catch (Exception e) {
+      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    }
   }
 
-  public ResponseEntity<Student> createStudent(Student student) {
+  public ResponseEntity<String> createStudent(Student student) {
     Optional<Student> studentOptional = studentRepository.findStudentByEmail(student.getEmail());
     if (studentOptional.isPresent()) {
       throw new IllegalArgumentException("email taken");
     }
-    return ResponseEntity.ok(studentRepository.save(student));
+    try {
+      studentRepository.save(student);
+      return ResponseEntity.ok("Student created successful!");
+    } catch (Exception e) {
+      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+    }
   }
 
   @Transactional
-  public ResponseEntity<Student> updateStudent(long studentId, Student student) {
+  public ResponseEntity<String> updateStudent(long studentId, Student student) {
     Student existStudent = studentRepository.findById(studentId).orElseThrow(() -> new IllegalArgumentException(String.format("Student with id %s not exists", studentId)));
     if (Objects.nonNull(student.getName()) && !Objects.equals(existStudent.getName(), student.getName())) {
       existStudent.setName(student.getName());
@@ -46,16 +60,25 @@ public class StudentService {
       }
       existStudent.setEmail(student.getEmail());
     }
-
-    return ResponseEntity.ok(studentRepository.save(existStudent));
+    try {
+      studentRepository.save(existStudent);
+      return ResponseEntity.ok("Student updated successful!");
+    } catch (Exception e) {
+      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+    }
   }
 
-  public void deleteStudent(long studentId) {
+  public ResponseEntity<String> deleteStudent(long studentId) {
     boolean existsById = studentRepository.existsById(studentId);
     if (!existsById) {
       throw new IllegalArgumentException(String.format("Student with id %s not exists", studentId));
     }
-    studentRepository.deleteById(studentId);
+    try {
+      studentRepository.deleteById(studentId);
+      return ResponseEntity.ok("Student deleted successful!");
+    } catch (Exception e) {
+      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+    }
   }
 
 }
