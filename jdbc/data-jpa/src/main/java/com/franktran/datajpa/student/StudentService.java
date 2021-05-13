@@ -1,5 +1,8 @@
 package com.franktran.datajpa.student;
 
+import com.franktran.datajpa.DateRange;
+import com.franktran.datajpa.SearchCriteria;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -17,9 +20,13 @@ public class StudentService {
     this.studentRepository = studentRepository;
   }
 
-  public ResponseEntity<List<Student>> getStudents() {
+  public ResponseEntity<List<Student>> getStudents(String name, String email, DateRange dobRange) {
     try {
-      return ResponseEntity.ok(studentRepository.findAll());
+      StudentSpecification nameSpec = new StudentSpecification(new SearchCriteria("name", name));
+      StudentSpecification emailSpec = new StudentSpecification(new SearchCriteria("email", email));
+      StudentSpecification dobSpec = new StudentSpecification(new SearchCriteria("dob", dobRange));
+      List<Student> students = studentRepository.findAll(Specification.where(nameSpec).and(emailSpec).and(dobSpec));
+      return ResponseEntity.ok(students);
     } catch (Exception e) {
       return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
     }
@@ -69,10 +76,10 @@ public class StudentService {
   public ResponseEntity<String> deleteStudent(Long id) {
     boolean existsById = studentRepository.existsById(id);
     if (!existsById) {
-      throw new IllegalArgumentException(String.format("Student with id %s not exists", studentId));
+      throw new IllegalArgumentException(String.format("Student with id %s not exists", id));
     }
     try {
-      studentRepository.deleteById(studentId);
+      studentRepository.deleteById(id);
       return ResponseEntity.ok("Student deleted successful!");
     } catch (Exception e) {
       return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());

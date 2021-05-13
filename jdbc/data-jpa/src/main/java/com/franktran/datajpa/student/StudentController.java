@@ -1,5 +1,6 @@
 package com.franktran.datajpa.student;
 
+import com.franktran.datajpa.DateRange;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -23,8 +25,10 @@ public class StudentController {
   }
 
   @GetMapping
-  public ResponseEntity<List<Student>> getStudents() {
-    return studentService.getStudents();
+  public ResponseEntity<List<Student>> getStudents(@RequestParam(required = false) String name,
+                                                   @RequestParam(required = false) String email,
+                                                   @RequestParam(required = false) DateRange dobRange) {
+    return studentService.getStudents(name, email, dobRange);
   }
 
   @GetMapping("/{id}")
