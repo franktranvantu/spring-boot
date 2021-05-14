@@ -1,7 +1,5 @@
-package com.franktran.datajpa.student;
+package com.franktran.datajpa.config;
 
-import com.franktran.datajpa.DateRange;
-import com.franktran.datajpa.SearchCriteria;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.jpa.domain.Specification;
 

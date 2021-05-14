@@ -1,4 +1,4 @@
-package com.franktran.datajpa;
+package com.franktran.datajpa.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.format.FormatterRegistry;

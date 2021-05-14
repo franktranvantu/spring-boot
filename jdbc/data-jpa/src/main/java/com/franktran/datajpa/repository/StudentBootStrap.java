@@ -1,4 +1,4 @@
-package com.franktran.datajpa.student;
+package com.franktran.datajpa.repository;
 
 import com.github.javafaker.Faker;
 import org.springframework.boot.CommandLineRunner;

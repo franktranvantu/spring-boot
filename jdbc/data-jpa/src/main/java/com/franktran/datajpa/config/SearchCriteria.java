@@ -1,4 +1,4 @@
-package com.franktran.datajpa;
+package com.franktran.datajpa.config;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

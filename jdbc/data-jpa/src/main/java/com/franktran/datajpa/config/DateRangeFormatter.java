@@ -1,4 +1,4 @@
-package com.franktran.datajpa;
+package com.franktran.datajpa.config;
 
 import org.springframework.format.Formatter;
 import org.springframework.stereotype.Component;

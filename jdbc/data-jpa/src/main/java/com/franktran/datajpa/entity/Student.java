@@ -1,4 +1,4 @@
-package com.franktran.datajpa.student;
+package com.franktran.datajpa.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
