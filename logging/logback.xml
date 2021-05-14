@@ -44,11 +44,11 @@
         <layout class="ch.qos.logback.classic.html.HTMLLayout"/>
     </appender>
 
-    <logger name="com.franktran" level="error" additivity="false">
+    <logger name="com.franktran.logging" level="error" additivity="false">
         <appender-ref ref="EMAIL"/>
     </logger>
 
-    <logger name="com.franktran" level="trace" additivity="false">
+    <logger name="com.franktran.logging" level="trace" additivity="false">
         <appender-ref ref="FILE-ROLLING"/>
     </logger>
 
@@ -56,7 +56,7 @@
         <appender-ref ref="FILE-ROLLING"/>
     </root>
 
-    <logger name="com.franktran" level="debug" additivity="false">
+    <logger name="com.franktran.logging" level="debug" additivity="false">
         <appender-ref ref="CONSOLE"/>
     </logger>
     <root level="error">
