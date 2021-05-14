@@ -1,5 +1,6 @@
 package com.franktran.datajpa.repository;
 
+import com.franktran.datajpa.entity.Student;
 import com.github.javafaker.Faker;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;

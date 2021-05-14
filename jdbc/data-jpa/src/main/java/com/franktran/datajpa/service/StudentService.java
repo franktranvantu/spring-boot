@@ -1,8 +1,10 @@
 package com.franktran.datajpa.service;
 
-import com.franktran.datajpa.DateRange;
-import com.franktran.datajpa.SearchCriteria;
-import com.franktran.datajpa.student.StudentSpecification;
+import com.franktran.datajpa.config.DateRange;
+import com.franktran.datajpa.config.SearchCriteria;
+import com.franktran.datajpa.config.StudentSpecification;
+import com.franktran.datajpa.entity.Student;
+import com.franktran.datajpa.repository.StudentRepository;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

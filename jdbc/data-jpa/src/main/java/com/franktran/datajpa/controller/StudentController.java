@@ -1,7 +1,8 @@
 package com.franktran.datajpa.controller;
 
-import com.franktran.datajpa.DateRange;
-import com.franktran.datajpa.student.StudentService;
+import com.franktran.datajpa.config.DateRange;
+import com.franktran.datajpa.entity.Student;
+import com.franktran.datajpa.service.StudentService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;

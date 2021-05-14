@@ -1,5 +1,6 @@
 package com.franktran.datajpa.config;
 
+import com.franktran.datajpa.entity.Student;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.jpa.domain.Specification;
 
